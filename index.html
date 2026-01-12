@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digi Mabble - AI Solutions</title>
+
+    <!-- React & ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #1b2955;
+            --navy-light: #2a3b75;
+            --orange: #faa31a;
+            --white: #ffffff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            overflow: hidden;
+            background: var(--white);
+            color: var(--gray-900);
+        }
+
+        /* Dark mode */
+        body.dark {
+            background: var(--gray-900);
+            color: var(--white);
+        }
+
+        /* Smooth transitions */
+        .slide-transition {
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        /* Simple fade animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .animate-fade-delay-1 {
+            animation-delay: 0.1s;
+            opacity: 0;
+        }
+
+        .animate-fade-delay-2 {
+            animation-delay: 0.2s;
+            opacity: 0;
+        }
+
+        .animate-fade-delay-3 {
+            animation-delay: 0.3s;
+            opacity: 0;
+        }
+
+        .animate-fade-delay-4 {
+            animation-delay: 0.4s;
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useCallback } = React;
+
+        // --- SIMPLE ICONS ---
+        const Icon = ({ d, size = 24, className = "" }) => (
+            <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
+                <path d={d} />
+            </svg>
+        );
+
+        const Icons = {
+            chevronLeft: "M15 18l-6-6 6-6",
+            chevronRight: "M9 18l6-6-6-6",
+            grid: "M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z",
+            sun: "M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z",
+            moon: "M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z",
+            maximize: "M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3m0 18h3a2 2 0 002-2v-3M3 16v3a2 2 0 002 2h3",
+            arrowRight: "M5 12h14m-7-7l7 7-7 7",
+            check: "M20 6L9 17l-5-5",
+            phone: "M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z",
+            mail: "M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm16 2l-8 5-8-5",
+            globe: "M12 2a10 10 0 100 20 10 10 0 000-20zm0 0c2.21 0 4 4.477 4 10s-1.79 10-4 10-4-4.477-4-10 1.79-10 4-10zm-10 10h20",
+            message: "M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v10z",
+            users: "M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2m22 0v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75M12 7a4 4 0 11-8 0 4 4 0 018 0z",
+            calendar: "M19 4H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2zm-3-2v4M8 2v4m-5 4h18",
+            bot: "M12 2a2 2 0 012 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 017 7v1a2 2 0 01-2 2h-1v3a2 2 0 01-2 2H8a2 2 0 01-2-2v-3H5a2 2 0 01-2-2v-1a7 7 0 017-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 012-2zM9.5 14a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm5 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"
+        };
+
+        // --- DIGI MABBLE LOGO ---
+        const DigiMabbleLogo = ({ height = 24, inverted = false }) => (
+            <img
+                src="https://firebasestorage.googleapis.com/v0/b/sharptronics-6cvn2d.firebasestorage.app/o/digimabble%20logo.png?alt=media&token=fe898add-12ad-4852-a93f-21ae50a5cb80"
+                alt="Digi Mabble"
+                style={{
+                    height: `${height}px`,
+                    width: 'auto',
+                    filter: inverted ? 'brightness(0) invert(1)' : 'none'
+                }}
+            />
+        );
+
+        // --- PRODUCT DATA ---
+        const PRODUCTS = [
+            // PRIORITY PRODUCTS (isPriority: true)
+            {
+                id: 1,
+                title: "Meeting Report Generator",
+                subtitle: "AI-Powered Documentation",
+                description: "Transform every meeting into actionable intelligence. Automatically transcribes discussions, identifies key decisions, extracts action items with owners, and generates professional reports synced to your workspace.",
+                points: [
+                    "99% accurate transcription",
+                    "Action items with task assignment",
+                    "Speaker-attributed notes",
+                    "Notion, Slack & CRM export"
+                ],
+                platform: "Integration",
+                demoLink: "mailto:info@digimabble.com",
+                buttonText: "Request Demo",
+                isPriority: true
+            },
+            {
+                id: 2,
+                title: "Speaker Analysis Agent",
+                subtitle: "Communication Intelligence",
+                description: "Get comprehensive speaker evaluations from any recorded meeting or presentation. Analyzes speech patterns, identifies filler words, measures clarity, and provides personalized improvement recommendations.",
+                points: [
+                    "Filler word detection",
+                    "Pace & clarity scoring",
+                    "Improvement recommendations",
+                    "Progress tracking over time"
+                ],
+                platform: "AI Analysis",
+                demoLink: "mailto:info@digimabble.com",
+                buttonText: "Request Demo",
+                isPriority: true
+            },
+            {
+                id: 3,
+                title: "WhatsApp Restaurant Reservation Agent",
+                subtitle: "24/7 Booking Automation",
+                description: "Never miss a reservation again. AI-powered WhatsApp agent handles table bookings round the clock, checks real-time availability, manages waitlists, and sends automated confirmations and reminders.",
+                points: [
+                    "24/7 instant responses",
+                    "Real-time table availability",
+                    "POS/CRM integration",
+                    "Automated reminders"
+                ],
+                platform: "WhatsApp",
+                demoLink: "https://wa.me/32465304143?text=hello",
+                buttonText: "Try Demo",
+                isPriority: true
+            },
+            {
+                id: 4,
+                title: "LinkedIn Lead Generation Agent",
+                subtitle: "B2B Sales Automation",
+                description: "Supercharge your sales pipeline with intelligent prospecting. Identifies ideal prospects, crafts personalized connection requests, manages multi-touch follow-up sequences, and syncs leads to your CRM automatically.",
+                points: [
+                    "ICP-based targeting",
+                    "Personalized outreach",
+                    "Automated follow-ups",
+                    "CRM sync & analytics"
+                ],
+                platform: "LinkedIn",
+                demoLink: "mailto:info@digimabble.com",
+                buttonText: "Request Demo",
+                isPriority: true
+            },
+            {
+                id: 5,
+                title: "Live Meeting Assistant",
+                subtitle: "Real-Time AI Companion",
+                description: "Your AI team member that joins meetings with full knowledge base access. Answers questions in real-time, provides relevant data, takes notes, and interacts naturally with all attendees during live sessions.",
+                points: [
+                    "Joins Google Meet/Zoom",
+                    "Knowledge base integration",
+                    "Real-time Q&A support",
+                    "Live note-taking"
+                ],
+                platform: "Meeting AI",
+                demoLink: "mailto:info@digimabble.com",
+                buttonText: "Request Demo",
+                isPriority: true
+            },
+            {
+                id: 6,
+                title: "Hands-Free Email Assistant",
+                subtitle: "Voice-Powered Inbox",
+                description: "Manage your entire inbox without typing. AI reads emails aloud, drafts context-aware replies using your voice, categorizes messages by priority, and lets you process hundreds of emails hands-free.",
+                points: [
+                    "Voice-controlled inbox",
+                    "AI-suggested replies",
+                    "Smart categorization",
+                    "Priority flagging"
+                ],
+                platform: "Email",
+                demoLink: "mailto:info@digimabble.com",
+                buttonText: "Request Demo",
+                isPriority: true
+            },
+            {
+                id: 7,
+                title: "AI Sales CRM",
+                subtitle: "Autonomous Deal Management",
+                description: "The CRM that runs itself. Just log your meetings and the AI handles everything - schedules follow-ups, drafts personalized emails, tracks deal progress, and alerts you only when human touch is needed.",
+                points: [
+                    "Auto follow-up scheduling",
+                    "Personalized email drafts",
+                    "Deal progress tracking",
+                    "Smart notifications"
+                ],
+                platform: "CRM",
+                demoLink: "mailto:info@digimabble.com",
+                buttonText: "Request Demo",
+                isPriority: true
+            },
+            {
+                id: 8,
+                title: "Job Automation Agent",
+                subtitle: "Career Autopilot",
+                description: "Let AI hunt jobs for you. Scans job boards matching your profile, personalizes each application with tailored cover letters, tracks application status, and optimizes your resume for ATS systems.",
+                points: [
+                    "Profile-based job matching",
+                    "Personalized applications",
+                    "ATS optimization",
+                    "Application tracking"
+                ],
+                platform: "Automation",
+                demoLink: "mailto:info@digimabble.com",
+                buttonText: "Request Demo",
+                isPriority: true
+            },
+            // STANDARD PRODUCTS
+            {
+                id: 9,
+                title: "Healthcare Appointment Bot",
+                subtitle: "Patient Scheduling",
+                description: "Intelligent booking agent for clinics and hospitals. Patients can self-schedule based on specialty, with automated reminders and EMR integration.",
+                points: [
+                    "Specialty-based booking",
+                    "Real-time availability",
+                    "Automated reminders",
+                    "EMR integration ready"
+                ],
+                platform: "WhatsApp",
+                demoLink: "https://wa.me/32465304143?text=hello",
+                buttonText: "Try Demo",
+                isPriority: false
+            },
+            {
+                id: 10,
+                title: "AI Voice Agent",
+                subtitle: "Phone Call Automation",
+                description: "24/7 voice agent handling inbound calls, managing appointments through Cal.com, and syncing data to your CRM.",
+                points: [
+                    "Natural voice conversations",
+                    "Appointment scheduling",
+                    "CRM ticket creation",
+                    "Twilio integration"
+                ],
+                platform: "Phone",
+                demoLink: "tel:+3280089559",
+                buttonText: "Call Now",
+                isPriority: false
+            },
+            {
+                id: 11,
+                title: "Therapist Matching Bot",
+                subtitle: "Patient Routing",
+                description: "Multilingual assistant that matches patients with the right therapist based on location, specialty, and availability.",
+                points: [
+                    "Smart recommendation engine",
+                    "Multilingual (EN/FR/NL)",
+                    "Location-based filtering",
+                    "Session continuity"
+                ],
+                platform: "Web Widget",
+                demoLink: "https://animacorpus.be",
+                buttonText: "See Live",
+                isPriority: false
+            },
+            {
+                id: 12,
+                title: "Real Estate Scheduler",
+                subtitle: "Property Viewing Bot",
+                description: "Telegram assistant that collects leads, showcases properties from your database, and books property visits automatically.",
+                points: [
+                    "Lead capture automation",
+                    "Live property listings",
+                    "Instant slot booking",
+                    "PostgreSQL integration"
+                ],
+                platform: "Telegram",
+                demoLink: "https://t.me/ai_appointment_scheduler_bot?start=hello",
+                buttonText: "Try Demo",
+                isPriority: false
+            },
+            {
+                id: 13,
+                title: "Property Alert System",
+                subtitle: "Market Intelligence",
+                description: "Automated property scraper that monitors listings hourly, detects new properties, and sends instant email alerts.",
+                points: [
+                    "Hourly market scanning",
+                    "New listing detection",
+                    "Airtable sync",
+                    "Email notifications"
+                ],
+                platform: "Automation",
+                demoLink: "mailto:info@digimabble.com",
+                buttonText: "Request Demo",
+                isPriority: false
+            },
+            {
+                id: 14,
+                title: "Social Media Agent",
+                subtitle: "Content Automation",
+                description: "24/7 social media manager generating content, scheduling posts at optimal times, and monitoring engagement.",
+                points: [
+                    "Content generation",
+                    "Optimal scheduling",
+                    "Engagement monitoring",
+                    "Multi-platform support"
+                ],
+                platform: "Social",
+                demoLink: "mailto:info@digimabble.com",
+                buttonText: "Request Demo",
+                isPriority: false
+            }
+        ];
+
+        // --- COMPONENTS ---
+
+        // Theme Toggle
+        const ThemeToggle = ({ isDark, onToggle }) => (
+            <button
+                onClick={onToggle}
+                style={{
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '8px',
+                    border: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid #e5e7eb',
+                    background: 'transparent',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: isDark ? '#9ca3af' : '#6b7280',
+                    transition: 'all 0.2s'
+                }}
+            >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <path d={isDark ? Icons.sun : Icons.moon} />
+                </svg>
+            </button>
+        );
+
+        // Header
+        const Header = ({ isDark, onToggle, currentSlide, totalSlides, onHome, onFullscreen }) => (
+            <header style={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                right: 0,
+                height: '72px',
+                padding: '0 48px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                borderBottom: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid #e5e7eb',
+                background: isDark ? 'rgba(17,24,39,0.95)' : 'rgba(255,255,255,0.95)',
+                backdropFilter: 'blur(8px)',
+                zIndex: 100
+            }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
+                    <DigiMabbleLogo height={28} inverted={isDark} />
+                    <div style={{
+                        height: '24px',
+                        width: '1px',
+                        background: isDark ? 'rgba(255,255,255,0.1)' : '#e5e7eb'
+                    }} />
+                    <span style={{
+                        fontSize: '14px',
+                        color: isDark ? '#9ca3af' : '#6b7280',
+                        fontWeight: 500
+                    }}>
+                        AI Solutions Portfolio
+                    </span>
+                </div>
+
+                <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                    {/* Slide Counter */}
+                    <div style={{
+                        padding: '8px 16px',
+                        borderRadius: '8px',
+                        background: isDark ? 'rgba(255,255,255,0.05)' : '#f3f4f6',
+                        fontSize: '14px',
+                        fontWeight: 600,
+                        color: isDark ? '#fff' : '#1b2955'
+                    }}>
+                        {currentSlide} <span style={{ color: isDark ? '#6b7280' : '#9ca3af', fontWeight: 400 }}>/ {totalSlides}</span>
+                    </div>
+
+                    {/* Home Button */}
+                    <button
+                        onClick={onHome}
+                        style={{
+                            width: '40px',
+                            height: '40px',
+                            borderRadius: '8px',
+                            border: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid #e5e7eb',
+                            background: 'transparent',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            color: isDark ? '#9ca3af' : '#6b7280'
+                        }}
+                    >
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                            <rect x="3" y="3" width="7" height="7" rx="1" />
+                            <rect x="14" y="3" width="7" height="7" rx="1" />
+                            <rect x="14" y="14" width="7" height="7" rx="1" />
+                            <rect x="3" y="14" width="7" height="7" rx="1" />
+                        </svg>
+                    </button>
+
+                    <ThemeToggle isDark={isDark} onToggle={onToggle} />
+
+                    <button
+                        onClick={onFullscreen}
+                        style={{
+                            width: '40px',
+                            height: '40px',
+                            borderRadius: '8px',
+                            border: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid #e5e7eb',
+                            background: 'transparent',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            color: isDark ? '#9ca3af' : '#6b7280'
+                        }}
+                    >
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                            <path d={Icons.maximize} />
+                        </svg>
+                    </button>
+                </div>
+            </header>
+        );
+
+        // Navigation Footer
+        const NavFooter = ({ isDark, currentSlide, totalSlides, onPrev, onNext, onGoTo }) => (
+            <footer style={{
+                position: 'fixed',
+                bottom: 0,
+                left: 0,
+                right: 0,
+                height: '80px',
+                padding: '0 48px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                borderTop: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid #e5e7eb',
+                background: isDark ? 'rgba(17,24,39,0.95)' : 'rgba(255,255,255,0.95)',
+                backdropFilter: 'blur(8px)',
+                zIndex: 100
+            }}>
+                {/* Previous */}
+                <button
+                    onClick={onPrev}
+                    disabled={currentSlide === 0}
+                    style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        padding: '12px 24px',
+                        borderRadius: '8px',
+                        border: 'none',
+                        background: currentSlide === 0 ? 'transparent' : (isDark ? 'rgba(255,255,255,0.05)' : '#f3f4f6'),
+                        color: currentSlide === 0 ? (isDark ? '#4b5563' : '#d1d5db') : (isDark ? '#fff' : '#1b2955'),
+                        fontSize: '14px',
+                        fontWeight: 600,
+                        cursor: currentSlide === 0 ? 'default' : 'pointer',
+                        transition: 'all 0.2s'
+                    }}
+                >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d={Icons.chevronLeft} />
+                    </svg>
+                    Previous
+                </button>
+
+                {/* Progress Bar */}
+                <div style={{
+                    flex: 1,
+                    maxWidth: '400px',
+                    margin: '0 32px',
+                    height: '4px',
+                    background: isDark ? 'rgba(255,255,255,0.1)' : '#e5e7eb',
+                    borderRadius: '2px',
+                    overflow: 'hidden'
+                }}>
+                    <div style={{
+                        width: `${((currentSlide) / (totalSlides - 1)) * 100}%`,
+                        height: '100%',
+                        background: '#faa31a',
+                        borderRadius: '2px',
+                        transition: 'width 0.4s ease'
+                    }} />
+                </div>
+
+                {/* Next */}
+                <button
+                    onClick={onNext}
+                    disabled={currentSlide === totalSlides - 1}
+                    style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        padding: '12px 24px',
+                        borderRadius: '8px',
+                        border: 'none',
+                        background: currentSlide === totalSlides - 1 ? (isDark ? 'rgba(255,255,255,0.05)' : '#f3f4f6') : '#1b2955',
+                        color: currentSlide === totalSlides - 1 ? (isDark ? '#4b5563' : '#9ca3af') : '#fff',
+                        fontSize: '14px',
+                        fontWeight: 600,
+                        cursor: currentSlide === totalSlides - 1 ? 'default' : 'pointer',
+                        transition: 'all 0.2s'
+                    }}
+                >
+                    Next
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d={Icons.chevronRight} />
+                    </svg>
+                </button>
+            </footer>
+        );
+
+        // Overview Slide with Hero Section
+        // Category Icons (SVG paths)
+        const CategoryIcons = {
+            healthcare: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4",
+            realestate: "M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z M9 22V12h6v10",
+            social: "M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v10z M8 10h.01M12 10h.01M16 10h.01",
+            productivity: "M13 2L3 14h9l-1 8 10-12h-9l1-8z"
+        };
+
+        const CATEGORIES = [
+            { name: "Productivity & AI", iconPath: CategoryIcons.productivity, color: "#8b5cf6", productIds: [1, 2, 5, 6] },
+            { name: "Sales & Outreach", iconPath: CategoryIcons.social, color: "#f59e0b", productIds: [3, 4, 7, 8] },
+            { name: "Healthcare", iconPath: CategoryIcons.healthcare, color: "#3b82f6", productIds: [9, 10, 11] },
+            { name: "Real Estate", iconPath: CategoryIcons.realestate, color: "#10b981", productIds: [12, 13, 14] }
+        ];
+
+        const OverviewSlide = ({ isDark, onSelect }) => (
+            <div style={{
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                padding: '90px 60px 100px',
+                overflowY: 'auto'
+            }}>
+                {/* Hero Section */}
+                <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    marginBottom: '48px',
+                    paddingBottom: '48px',
+                    borderBottom: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid #e5e7eb'
+                }} className="animate-fade">
+                    <div style={{ maxWidth: '500px' }}>
+                        <div style={{
+                            display: 'inline-block',
+                            padding: '6px 12px',
+                            borderRadius: '20px',
+                            background: isDark ? 'rgba(250,163,26,0.15)' : '#fef3cd',
+                            marginBottom: '16px'
+                        }}>
+                            <span style={{
+                                fontSize: '12px',
+                                fontWeight: 600,
+                                color: '#faa31a',
+                                letterSpacing: '0.5px'
+                            }}>
+                                14 AI SOLUTIONS
+                            </span>
+                        </div>
+                        <h1 style={{
+                            fontSize: '42px',
+                            fontWeight: 700,
+                            color: isDark ? '#fff' : '#1b2955',
+                            lineHeight: 1.15,
+                            marginBottom: '16px'
+                        }}>
+                            Intelligent Automation<br />
+                            <span style={{ color: '#faa31a' }}>That Delivers Results</span>
+                        </h1>
+                        <p style={{
+                            fontSize: '16px',
+                            color: isDark ? '#9ca3af' : '#6b7280',
+                            lineHeight: 1.7
+                        }}>
+                            Enterprise-grade AI solutions designed to automate your business processes,
+                            reduce costs, and improve customer experience.
+                        </p>
+                    </div>
+
+                    {/* Stats */}
+                    <div style={{ display: 'flex', gap: '48px' }}>
+                        {[
+                            { value: '24/7', label: 'Availability' },
+                            { value: '90%', label: 'Time Saved' },
+                            { value: '10+', label: 'Industries' }
+                        ].map((stat, i) => (
+                            <div key={i} style={{ textAlign: 'center' }}>
+                                <div style={{
+                                    fontSize: '32px',
+                                    fontWeight: 700,
+                                    color: isDark ? '#fff' : '#1b2955',
+                                    marginBottom: '4px'
+                                }}>
+                                    {stat.value}
+                                </div>
+                                <div style={{
+                                    fontSize: '12px',
+                                    color: isDark ? '#6b7280' : '#9ca3af',
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '1px'
+                                }}>
+                                    {stat.label}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Category Cards */}
+                <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+                    <div style={{
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(4, 1fr)',
+                        gap: '20px',
+                        flex: 1
+                    }}>
+                        {CATEGORIES.map((category, catIdx) => {
+                            const categoryProducts = category.productIds.map(id => ({
+                                product: PRODUCTS.find(p => p.id === id),
+                                slideIndex: PRODUCTS.findIndex(p => p.id === id) + 1
+                            }));
+
+                            return (
+                                <div
+                                    key={category.name}
+                                    className="animate-fade"
+                                    style={{
+                                        animationDelay: `${catIdx * 0.1}s`,
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        padding: '24px',
+                                        borderRadius: '16px',
+                                        border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid #e5e7eb',
+                                        background: isDark ? 'rgba(255,255,255,0.02)' : '#fff'
+                                    }}
+                                >
+                                    {/* Category Icon & Name */}
+                                    <div style={{ marginBottom: '20px' }}>
+                                        <div style={{
+                                            width: '48px',
+                                            height: '48px',
+                                            borderRadius: '12px',
+                                            background: `${category.color}15`,
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            marginBottom: '16px'
+                                        }}>
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={category.color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                                <path d={category.iconPath} />
+                                            </svg>
+                                        </div>
+                                        <h3 style={{
+                                            fontSize: '18px',
+                                            fontWeight: 700,
+                                            color: isDark ? '#fff' : '#1b2955',
+                                            marginBottom: '4px'
+                                        }}>
+                                            {category.name}
+                                        </h3>
+                                        <span style={{
+                                            fontSize: '12px',
+                                            color: isDark ? '#6b7280' : '#9ca3af'
+                                        }}>
+                                            {categoryProducts.length} solutions
+                                        </span>
+                                    </div>
+
+                                    {/* Product List */}
+                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', flex: 1 }}>
+                                        {categoryProducts.map(({ product, slideIndex }) => (
+                                            <button
+                                                key={product.id}
+                                                onClick={() => onSelect(slideIndex)}
+                                                style={{
+                                                    padding: '12px 14px',
+                                                    borderRadius: '8px',
+                                                    border: 'none',
+                                                    background: isDark ? 'rgba(255,255,255,0.04)' : '#f9fafb',
+                                                    cursor: 'pointer',
+                                                    textAlign: 'left',
+                                                    transition: 'all 0.2s',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'space-between'
+                                                }}
+                                                onMouseEnter={(e) => {
+                                                    e.currentTarget.style.background = `${category.color}20`;
+                                                    e.currentTarget.style.transform = 'translateX(4px)';
+                                                }}
+                                                onMouseLeave={(e) => {
+                                                    e.currentTarget.style.background = isDark ? 'rgba(255,255,255,0.04)' : '#f9fafb';
+                                                    e.currentTarget.style.transform = 'translateX(0)';
+                                                }}
+                                            >
+                                                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                                    {product.isPriority && (
+                                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                                            <path d="M23 6l-9.5 9.5-5-5L1 18" />
+                                                            <path d="M17 6h6v6" />
+                                                        </svg>
+                                                    )}
+                                                    <span style={{
+                                                        fontSize: '13px',
+                                                        fontWeight: product.isPriority ? 600 : 500,
+                                                        color: isDark ? '#e5e7eb' : '#374151'
+                                                    }}>
+                                                        {product.title.replace(' Bot', '').replace(' AI', '').replace(' System', '').replace(' Agent', '')}
+                                                    </span>
+                                                </div>
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={category.color} strokeWidth="2" style={{ opacity: 0.6 }}>
+                                                    <path d={Icons.chevronRight} />
+                                                </svg>
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+
+                {/* Keyboard Hints */}
+                <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '24px',
+                    marginTop: '24px',
+                    paddingTop: '24px',
+                    borderTop: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid #e5e7eb'
+                }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: isDark ? '#6b7280' : '#9ca3af', fontSize: '12px' }}>
+                        <span style={{ padding: '4px 8px', borderRadius: '4px', background: isDark ? 'rgba(255,255,255,0.05)' : '#f3f4f6', fontFamily: 'monospace' }}>←</span>
+                        <span style={{ padding: '4px 8px', borderRadius: '4px', background: isDark ? 'rgba(255,255,255,0.05)' : '#f3f4f6', fontFamily: 'monospace' }}>→</span>
+                        <span>Navigate</span>
+                    </div>
+                    <div style={{ width: '4px', height: '4px', borderRadius: '50%', background: isDark ? '#4b5563' : '#d1d5db' }} />
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: isDark ? '#6b7280' : '#9ca3af', fontSize: '12px' }}>
+                        <span style={{ padding: '4px 8px', borderRadius: '4px', background: isDark ? 'rgba(255,255,255,0.05)' : '#f3f4f6', fontFamily: 'monospace' }}>F</span>
+                        <span>Fullscreen</span>
+                    </div>
+                </div>
+            </div>
+        );
+
+        // Product Slide
+        const ProductSlide = ({ product, isDark, slideNumber }) => (
+            <div style={{
+                height: '100%',
+                display: 'grid',
+                gridTemplateColumns: '1fr 1fr',
+                padding: '120px 80px',
+                gap: '80px',
+                alignItems: 'center'
+            }}>
+                {/* Left: Content */}
+                <div>
+                    {/* Slide Number & Platform */}
+                    <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '16px',
+                        marginBottom: '24px'
+                    }} className="animate-fade">
+                        <span style={{
+                            fontSize: '13px',
+                            fontWeight: 600,
+                            color: isDark ? '#6b7280' : '#9ca3af'
+                        }}>
+                            {String(slideNumber).padStart(2, '0')}
+                        </span>
+                        <div style={{
+                            width: '40px',
+                            height: '1px',
+                            background: isDark ? 'rgba(255,255,255,0.2)' : '#d1d5db'
+                        }} />
+                        <span style={{
+                            fontSize: '13px',
+                            fontWeight: 600,
+                            color: '#faa31a',
+                            textTransform: 'uppercase',
+                            letterSpacing: '1px'
+                        }}>
+                            {product.platform}
+                        </span>
+                        {product.isPriority && (
+                            <div style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '6px',
+                                padding: '4px 10px',
+                                borderRadius: '20px',
+                                background: isDark ? 'rgba(16, 185, 129, 0.15)' : '#d1fae5',
+                                marginLeft: '8px'
+                            }}>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M23 6l-9.5 9.5-5-5L1 18" />
+                                    <path d="M17 6h6v6" />
+                                </svg>
+                                <span style={{
+                                    fontSize: '11px',
+                                    fontWeight: 600,
+                                    color: '#10b981',
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '0.5px'
+                                }}>
+                                    Featured
+                                </span>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Title */}
+                    <h2 style={{
+                        fontSize: '42px',
+                        fontWeight: 700,
+                        color: isDark ? '#fff' : '#1b2955',
+                        lineHeight: 1.15,
+                        marginBottom: '8px'
+                    }} className="animate-fade animate-fade-delay-1">
+                        {product.title}
+                    </h2>
+
+                    {/* Subtitle */}
+                    <p style={{
+                        fontSize: '18px',
+                        color: '#faa31a',
+                        fontWeight: 500,
+                        marginBottom: '24px'
+                    }} className="animate-fade animate-fade-delay-1">
+                        {product.subtitle}
+                    </p>
+
+                    {/* Description */}
+                    <p style={{
+                        fontSize: '17px',
+                        color: isDark ? '#9ca3af' : '#6b7280',
+                        lineHeight: 1.7,
+                        marginBottom: '32px',
+                        maxWidth: '500px'
+                    }} className="animate-fade animate-fade-delay-2">
+                        {product.description}
+                    </p>
+
+                    {/* Key Points */}
+                    <div style={{
+                        display: 'grid',
+                        gridTemplateColumns: '1fr 1fr',
+                        gap: '16px',
+                        marginBottom: '40px'
+                    }}>
+                        {product.points.map((point, idx) => (
+                            <div
+                                key={idx}
+                                className={`animate-fade animate-fade-delay-${Math.min(idx + 2, 4)}`}
+                                style={{
+                                    display: 'flex',
+                                    alignItems: 'flex-start',
+                                    gap: '12px'
+                                }}
+                            >
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#faa31a" strokeWidth="2" style={{ marginTop: '2px', flexShrink: 0 }}>
+                                    <path d={Icons.check} />
+                                </svg>
+                                <span style={{
+                                    fontSize: '15px',
+                                    color: isDark ? '#e5e7eb' : '#374151',
+                                    lineHeight: 1.5
+                                }}>
+                                    {point}
+                                </span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Right: CTA Card */}
+                <div style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                }}>
+                    <div
+                        className="animate-fade animate-fade-delay-2"
+                        style={{
+                            width: '100%',
+                            maxWidth: '400px',
+                            padding: '48px',
+                            borderRadius: '16px',
+                            border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid #e5e7eb',
+                            background: isDark ? 'rgba(255,255,255,0.02)' : '#fff',
+                            textAlign: 'center'
+                        }}
+                    >
+                        {/* Icon */}
+                        <div style={{
+                            width: '72px',
+                            height: '72px',
+                            borderRadius: '16px',
+                            background: isDark ? 'rgba(250,163,26,0.1)' : '#fef3cd',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            margin: '0 auto 24px'
+                        }}>
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#faa31a" strokeWidth="1.5">
+                                <path d={Icons.message} />
+                            </svg>
+                        </div>
+
+                        <h3 style={{
+                            fontSize: '22px',
+                            fontWeight: 600,
+                            color: isDark ? '#fff' : '#1b2955',
+                            marginBottom: '12px'
+                        }}>
+                            Experience Live
+                        </h3>
+
+                        <p style={{
+                            fontSize: '15px',
+                            color: isDark ? '#9ca3af' : '#6b7280',
+                            marginBottom: '32px',
+                            lineHeight: 1.6
+                        }}>
+                            Try this solution right now with our interactive demo.
+                        </p>
+
+                        {/* CTA Button */}
+                        <a
+                            href={product.demoLink}
+                            target={product.demoLink.startsWith('mailto') || product.demoLink.startsWith('tel') ? "_self" : "_blank"}
+                            rel="noopener noreferrer"
+                            style={{
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '10px',
+                                padding: '16px 32px',
+                                borderRadius: '8px',
+                                background: '#1b2955',
+                                color: '#fff',
+                                fontSize: '15px',
+                                fontWeight: 600,
+                                textDecoration: 'none',
+                                transition: 'all 0.2s'
+                            }}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.background = '#2a3b75';
+                                e.currentTarget.style.transform = 'translateY(-2px)';
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.background = '#1b2955';
+                                e.currentTarget.style.transform = 'translateY(0)';
+                            }}
+                        >
+                            {product.buttonText}
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <path d={Icons.arrowRight} />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        );
+
+        // Main App
+        const App = () => {
+            const [isDark, setIsDark] = useState(false);
+            const [currentSlide, setCurrentSlide] = useState(0);
+            const [isAnimating, setIsAnimating] = useState(false);
+
+            const totalSlides = PRODUCTS.length + 1;
+
+            // Apply dark mode to body
+            useEffect(() => {
+                document.body.classList.toggle('dark', isDark);
+            }, [isDark]);
+
+            // Navigation
+            const goToSlide = useCallback((index) => {
+                if (isAnimating || index < 0 || index >= totalSlides) return;
+                setIsAnimating(true);
+                setCurrentSlide(index);
+                setTimeout(() => setIsAnimating(false), 400);
+            }, [isAnimating, totalSlides]);
+
+            const goNext = useCallback(() => goToSlide(currentSlide + 1), [currentSlide, goToSlide]);
+            const goPrev = useCallback(() => goToSlide(currentSlide - 1), [currentSlide, goToSlide]);
+            const goHome = useCallback(() => goToSlide(0), [goToSlide]);
+
+            // Keyboard
+            useEffect(() => {
+                const handleKey = (e) => {
+                    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); goNext(); }
+                    else if (e.key === 'ArrowLeft') { e.preventDefault(); goPrev(); }
+                    else if (e.key === 'Escape' || e.key === 'Home') { e.preventDefault(); goHome(); }
+                    else if (e.key === 'f' || e.key === 'F') { toggleFullscreen(); }
+                };
+                window.addEventListener('keydown', handleKey);
+                return () => window.removeEventListener('keydown', handleKey);
+            }, [goNext, goPrev, goHome]);
+
+            // Fullscreen
+            const toggleFullscreen = () => {
+                if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+                else document.exitFullscreen();
+            };
+
+            return (
+                <div style={{
+                    height: '100vh',
+                    width: '100vw',
+                    overflow: 'hidden',
+                    background: isDark ? '#111827' : '#fff'
+                }}>
+                    <Header
+                        isDark={isDark}
+                        onToggle={() => setIsDark(!isDark)}
+                        currentSlide={currentSlide}
+                        totalSlides={totalSlides}
+                        onHome={goHome}
+                        onFullscreen={toggleFullscreen}
+                    />
+
+                    <main style={{ height: '100%', width: '100%' }} className="slide-transition">
+                        {currentSlide === 0 ? (
+                            <OverviewSlide isDark={isDark} onSelect={goToSlide} />
+                        ) : (
+                            <ProductSlide
+                                product={PRODUCTS[currentSlide - 1]}
+                                isDark={isDark}
+                                slideNumber={currentSlide}
+                            />
+                        )}
+                    </main>
+
+                    <NavFooter
+                        isDark={isDark}
+                        currentSlide={currentSlide}
+                        totalSlides={totalSlides}
+                        onPrev={goPrev}
+                        onNext={goNext}
+                        onGoTo={goToSlide}
+                    />
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+
+</html>
