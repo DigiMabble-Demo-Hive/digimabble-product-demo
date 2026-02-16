@@ -131,7 +131,7 @@
         // --- DIGI MABBLE LOGO ---
         const DigiMabbleLogo = ({ height = 24, inverted = false }) => (
             <img
-                src="https://firebasestorage.googleapis.com/v0/b/sharptronics-6cvn2d.firebasestorage.app/o/digimabble%20logo.png?alt=media&token=fe898add-12ad-4852-a93f-21ae50a5cb80"
+                src="https://digimabbleai.com/wp-content/uploads/2023/09/logo.png"
                 alt="Digi Mabble"
                 style={{
                     height: `${height}px`,
@@ -143,7 +143,27 @@
 
         // --- PRODUCT DATA ---
         const PRODUCTS = [
-            // PRIORITY PRODUCTS (isPriority: true)
+            // SOFIA AI SUITE
+            {
+                id: 18,
+                title: "Sofia AI",
+                subtitle: "Voice-First Executive Assistant",
+                description: "Automate your entire meeting lifecycle. From scheduling to real-time participation to post-meeting execution—all hands-free.",
+                points: [
+                    "Hands-Free Voice Interface",
+                    "Intelligent Email Commander",
+                    "Real-Time Meeting Agent",
+                    "Executive Coach & Analyst"
+                ],
+                platform: "Voice AI",
+                demoLink: "https://sofia-handsfree-ai.netlify.app/",
+                buttonText: "Launch Live Demo",
+                extraButtons: [
+                    { text: "Product Page", link: "https://sofia-ai-voice-first-executive-assist.netlify.app/" },
+                    { text: "Documentation", link: "https://sofia-ai-voice-first-executive-assist.netlify.app/docs" }
+                ],
+                isPriority: true
+            },
             {
                 id: 1,
                 title: "Meeting Report Generator",
@@ -157,6 +177,7 @@
                 ],
                 platform: "Integration",
                 demoLink: "mailto:info@digimabble.com",
+                sampleReport: "meeting_report.html",
                 buttonText: "Request Demo",
                 isPriority: true
             },
@@ -173,9 +194,99 @@
                 ],
                 platform: "AI Analysis",
                 demoLink: "mailto:info@digimabble.com",
+                sampleReport: "speaker_insights.html",
                 buttonText: "Request Demo",
                 isPriority: true
             },
+            {
+                id: 5,
+                title: "Executive Meeting Assistant",
+                subtitle: "Real-Time AI Companion",
+                description: "Your AI team member that joins meetings with full knowledge base access. Answers questions in real-time, provides relevant data, takes notes, and interacts naturally with all attendees during live sessions.",
+                instruction: "To operate, ask the assistant to join the meeting by sharing the meeting link.",
+                points: [
+                    "Joins Google Meet/Zoom",
+                    "Knowledge base integration",
+                    "Real-time Q&A support",
+                    "Live note-taking"
+                ],
+                platform: "Meeting AI",
+                demoLink: "https://sofia-handsfree-ai.netlify.app/",
+                buttonText: "Try Now",
+                isPriority: true
+            },
+            {
+                id: 6,
+                title: "Hands-Free Email Assistant",
+                subtitle: "Voice-Powered Inbox",
+                description: "Manage your entire inbox without typing. AI reads emails aloud, drafts context-aware replies using your voice, categorizes messages by priority, and lets you process hundreds of emails hands-free.",
+                points: [
+                    "Voice-controlled inbox",
+                    "AI-suggested replies",
+                    "Smart categorization",
+                    "Priority flagging"
+                ],
+                platform: "Email",
+                demoLink: "https://sofia-handsfree-ai.netlify.app/",
+                buttonText: "Try Now",
+                instruction: "Please open and explore the Outlook icon, or follow the on-screen instructions.",
+                isPriority: true
+            },
+            // FLOWPILOT SUITE
+            {
+                id: 15,
+                title: "FlowPilot Email Management",
+                subtitle: "Intelligent Email Management",
+                description: "FlowPilot leverages advanced AI to intelligently categorize, prioritize, and automate communications — reducing response times and ensuring critical patient messages receive immediate attention.",
+                points: [
+                    "Intelligent Categorization",
+                    "Automated Priority Routing",
+                    "Native Outlook Integration",
+                    "HIPAA Compliant Security"
+                ],
+                platform: "Email AI",
+                demoLink: "https://flow-pilot-chi.vercel.app/",
+                buttonText: "Launch Live Dashboard",
+                extraButtons: [
+                    { text: "Product Details", link: "https://flow-pilot-landing-page.vercel.app/" },
+                    { text: "Documentation", link: "https://flow-pilot-document-site.vercel.app" }
+                ],
+                isPriority: true
+            },
+            // APPOINTMENT MANAGEMENT
+            {
+                id: 16,
+                title: "Greenlane WhatsApp Appointment Agent",
+                subtitle: "Appointment Agent & CRM",
+                description: "Greenlane manages appointments using convenient WhatsApp and provides a complete CRM for internal operations. Initially concentrated on restaurants, healthcare, and spas.",
+                points: [
+                    "WhatsApp Appointment Management",
+                    "Complete CRM for Operations",
+                    "Specialized for Restaurants & Spas",
+                    "Healthcare Scheduling Ready"
+                ],
+                platform: "WhatsApp CRM",
+                demoLink: "https://green-lane-e6ud.vercel.app/",
+                buttonText: "Try Now",
+                isPriority: true
+            },
+            {
+                id: 17,
+                title: "AI Voice Agent + CRM",
+                subtitle: "AI Voice Appointment System",
+                description: "An advanced AI voice agent that answers calls to handle appointment management, document requests, and general inquiries. Fully integrated with an internal CRM to streamline operations automatically.",
+                points: [
+                    "Natural Voice Interaction",
+                    "Automated Scheduling",
+                    "Document Request Handling",
+                    "Integrated CRM Operations"
+                ],
+                platform: "Voice AI",
+                demoLink: "https://anima-corp-crm.vercel.app/",
+                buttonText: "Try Now",
+                isPriority: true
+            },
+            // SALES & OUTREACH
             {
                 id: 3,
                 title: "WhatsApp Restaurant Reservation Agent",
@@ -204,38 +315,6 @@
                     "CRM sync & analytics"
                 ],
                 platform: "LinkedIn",
-                demoLink: "mailto:info@digimabble.com",
-                buttonText: "Request Demo",
-                isPriority: true
-            },
-            {
-                id: 5,
-                title: "Live Meeting Assistant",
-                subtitle: "Real-Time AI Companion",
-                description: "Your AI team member that joins meetings with full knowledge base access. Answers questions in real-time, provides relevant data, takes notes, and interacts naturally with all attendees during live sessions.",
-                points: [
-                    "Joins Google Meet/Zoom",
-                    "Knowledge base integration",
-                    "Real-time Q&A support",
-                    "Live note-taking"
-                ],
-                platform: "Meeting AI",
-                demoLink: "mailto:info@digimabble.com",
-                buttonText: "Request Demo",
-                isPriority: true
-            },
-            {
-                id: 6,
-                title: "Hands-Free Email Assistant",
-                subtitle: "Voice-Powered Inbox",
-                description: "Manage your entire inbox without typing. AI reads emails aloud, drafts context-aware replies using your voice, categorizes messages by priority, and lets you process hundreds of emails hands-free.",
-                points: [
-                    "Voice-controlled inbox",
-                    "AI-suggested replies",
-                    "Smart categorization",
-                    "Priority flagging"
-                ],
-                platform: "Email",
                 demoLink: "mailto:info@digimabble.com",
                 buttonText: "Request Demo",
                 isPriority: true
@@ -586,11 +665,22 @@
             healthcare: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4",
             realestate: "M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z M9 22V12h6v10",
             social: "M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v10z M8 10h.01M12 10h.01M16 10h.01",
-            productivity: "M13 2L3 14h9l-1 8 10-12h-9l1-8z"
+            productivity: "M13 2L3 14h9l-1 8 10-12h-9l1-8z",
+            appointment: "M19 4H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2zm-3-2v4M8 2v4m-5 4h18"
         };
 
         const CATEGORIES = [
-            { name: "Productivity & AI", iconPath: CategoryIcons.productivity, color: "#8b5cf6", productIds: [1, 2, 5, 6] },
+            {
+                name: "Productivity & Business Intelligence",
+                iconPath: CategoryIcons.productivity,
+                color: "#8b5cf6",
+                productIds: [18, 1, 2, 5, 6, 15],
+                subGroups: [
+                    { name: "Sofia AI Suite", productIds: [18, 1, 2, 5, 6] },
+                    { name: "FlowPilot Suite", productIds: [15] }
+                ]
+            },
+            { name: "Appointment Management System", iconPath: CategoryIcons.appointment, color: "#10b981", productIds: [16, 17] },
             { name: "Sales & Outreach", iconPath: CategoryIcons.social, color: "#f59e0b", productIds: [3, 4, 7, 8] },
             { name: "Healthcare", iconPath: CategoryIcons.healthcare, color: "#3b82f6", productIds: [9, 10, 11] },
             { name: "Real Estate", iconPath: CategoryIcons.realestate, color: "#10b981", productIds: [12, 13, 14] }
@@ -614,22 +704,7 @@
                     borderBottom: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid #e5e7eb'
                 }} className="animate-fade">
                     <div style={{ maxWidth: '500px' }}>
-                        <div style={{
-                            display: 'inline-block',
-                            padding: '6px 12px',
-                            borderRadius: '20px',
-                            background: isDark ? 'rgba(250,163,26,0.15)' : '#fef3cd',
-                            marginBottom: '16px'
-                        }}>
-                            <span style={{
-                                fontSize: '12px',
-                                fontWeight: 600,
-                                color: '#faa31a',
-                                letterSpacing: '0.5px'
-                            }}>
-                                14 AI SOLUTIONS
-                            </span>
-                        </div>
+                        {/* Badge removed */}
                         <h1 style={{
                             fontSize: '42px',
                             fontWeight: 700,
@@ -740,53 +815,123 @@
                                     </div>
 
                                     {/* Product List */}
-                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', flex: 1 }}>
-                                        {categoryProducts.map(({ product, slideIndex }) => (
-                                            <button
-                                                key={product.id}
-                                                onClick={() => onSelect(slideIndex)}
-                                                style={{
-                                                    padding: '12px 14px',
-                                                    borderRadius: '8px',
-                                                    border: 'none',
-                                                    background: isDark ? 'rgba(255,255,255,0.04)' : '#f9fafb',
-                                                    cursor: 'pointer',
-                                                    textAlign: 'left',
-                                                    transition: 'all 0.2s',
-                                                    display: 'flex',
-                                                    alignItems: 'center',
-                                                    justifyContent: 'space-between'
-                                                }}
-                                                onMouseEnter={(e) => {
-                                                    e.currentTarget.style.background = `${category.color}20`;
-                                                    e.currentTarget.style.transform = 'translateX(4px)';
-                                                }}
-                                                onMouseLeave={(e) => {
-                                                    e.currentTarget.style.background = isDark ? 'rgba(255,255,255,0.04)' : '#f9fafb';
-                                                    e.currentTarget.style.transform = 'translateX(0)';
-                                                }}
-                                            >
-                                                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                                    {product.isPriority && (
-                                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                                            <path d="M23 6l-9.5 9.5-5-5L1 18" />
-                                                            <path d="M17 6h6v6" />
-                                                        </svg>
-                                                    )}
-                                                    <span style={{
-                                                        fontSize: '13px',
-                                                        fontWeight: product.isPriority ? 600 : 500,
-                                                        color: isDark ? '#e5e7eb' : '#374151'
+                                    {category.subGroups ? (
+                                        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', flex: 1 }}>
+                                            {category.subGroups.map((group, gIdx) => (
+                                                <div key={gIdx}>
+                                                    <h4 style={{
+                                                        fontSize: '11px',
+                                                        fontWeight: 700,
+                                                        textTransform: 'uppercase',
+                                                        letterSpacing: '0.5px',
+                                                        color: isDark ? '#6b7280' : '#9ca3af',
+                                                        marginBottom: '8px'
                                                     }}>
-                                                        {product.title.replace(' Bot', '').replace(' AI', '').replace(' System', '').replace(' Agent', '')}
-                                                    </span>
+                                                        {group.name}
+                                                    </h4>
+                                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', paddingLeft: '12px' }}>
+                                                        {group.productIds.map(id => {
+                                                            const product = PRODUCTS.find(p => p.id === id);
+                                                            const slideIndex = PRODUCTS.findIndex(p => p.id === id) + 1;
+                                                            return (
+                                                                <button
+                                                                    key={product.id}
+                                                                    onClick={() => onSelect(slideIndex)}
+                                                                    style={{
+                                                                        padding: '12px 14px',
+                                                                        borderRadius: '8px',
+                                                                        border: 'none',
+                                                                        background: isDark ? 'rgba(255,255,255,0.04)' : '#f9fafb',
+                                                                        cursor: 'pointer',
+                                                                        textAlign: 'left',
+                                                                        transition: 'all 0.2s',
+                                                                        display: 'flex',
+                                                                        alignItems: 'center',
+                                                                        justifyContent: 'space-between'
+                                                                    }}
+                                                                    onMouseEnter={(e) => {
+                                                                        e.currentTarget.style.background = `${category.color}20`;
+                                                                        e.currentTarget.style.transform = 'translateX(4px)';
+                                                                    }}
+                                                                    onMouseLeave={(e) => {
+                                                                        e.currentTarget.style.background = isDark ? 'rgba(255,255,255,0.04)' : '#f9fafb';
+                                                                        e.currentTarget.style.transform = 'translateX(0)';
+                                                                    }}
+                                                                >
+                                                                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                                                        {product.isPriority && (
+                                                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                                                                <path d="M23 6l-9.5 9.5-5-5L1 18" />
+                                                                                <path d="M17 6h6v6" />
+                                                                            </svg>
+                                                                        )}
+                                                                        <span style={{
+                                                                            fontSize: '13px',
+                                                                            fontWeight: product.isPriority ? 600 : 500,
+                                                                            color: isDark ? '#e5e7eb' : '#374151'
+                                                                        }}>
+                                                                            {product.title.replace(' Bot', '').replace(' AI', '').replace(' System', '').replace(' Agent', '')}
+                                                                        </span>
+                                                                    </div>
+                                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={category.color} strokeWidth="2" style={{ opacity: 0.6 }}>
+                                                                        <path d={Icons.chevronRight} />
+                                                                    </svg>
+                                                                </button>
+                                                            );
+                                                        })}
+                                                    </div>
                                                 </div>
-                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={category.color} strokeWidth="2" style={{ opacity: 0.6 }}>
-                                                    <path d={Icons.chevronRight} />
-                                                </svg>
-                                            </button>
-                                        ))}
-                                    </div>
+                                            ))}
+                                        </div>
+                                    ) : (
+                                        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', flex: 1 }}>
+                                            {categoryProducts.map(({ product, slideIndex }) => (
+                                                <button
+                                                    key={product.id}
+                                                    onClick={() => onSelect(slideIndex)}
+                                                    style={{
+                                                        padding: '12px 14px',
+                                                        borderRadius: '8px',
+                                                        border: 'none',
+                                                        background: isDark ? 'rgba(255,255,255,0.04)' : '#f9fafb',
+                                                        cursor: 'pointer',
+                                                        textAlign: 'left',
+                                                        transition: 'all 0.2s',
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        justifyContent: 'space-between'
+                                                    }}
+                                                    onMouseEnter={(e) => {
+                                                        e.currentTarget.style.background = `${category.color}20`;
+                                                        e.currentTarget.style.transform = 'translateX(4px)';
+                                                    }}
+                                                    onMouseLeave={(e) => {
+                                                        e.currentTarget.style.background = isDark ? 'rgba(255,255,255,0.04)' : '#f9fafb';
+                                                        e.currentTarget.style.transform = 'translateX(0)';
+                                                    }}
+                                                >
+                                                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                                        {product.isPriority && (
+                                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                                                <path d="M23 6l-9.5 9.5-5-5L1 18" />
+                                                                <path d="M17 6h6v6" />
+                                                            </svg>
+                                                        )}
+                                                        <span style={{
+                                                            fontSize: '13px',
+                                                            fontWeight: product.isPriority ? 600 : 500,
+                                                            color: isDark ? '#e5e7eb' : '#374151'
+                                                        }}>
+                                                            {product.title.replace(' Bot', '').replace(' AI', '').replace(' System', '').replace(' Agent', '')}
+                                                        </span>
+                                                    </div>
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={category.color} strokeWidth="2" style={{ opacity: 0.6 }}>
+                                                        <path d={Icons.chevronRight} />
+                                                    </svg>
+                                                </button>
+                                            ))}
+                                        </div>
+                                    )}
                                 </div>
                             );
                         })}
@@ -817,225 +962,410 @@
             </div>
         );
 
+
         // Product Slide
-        const ProductSlide = ({ product, isDark, slideNumber }) => (
-            <div style={{
-                height: '100%',
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
-                padding: '120px 80px',
-                gap: '80px',
-                alignItems: 'center'
-            }}>
-                {/* Left: Content */}
-                <div>
-                    {/* Slide Number & Platform */}
-                    <div style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '16px',
-                        marginBottom: '24px'
-                    }} className="animate-fade">
-                        <span style={{
-                            fontSize: '13px',
-                            fontWeight: 600,
-                            color: isDark ? '#6b7280' : '#9ca3af'
-                        }}>
-                            {String(slideNumber).padStart(2, '0')}
-                        </span>
-                        <div style={{
-                            width: '40px',
-                            height: '1px',
-                            background: isDark ? 'rgba(255,255,255,0.2)' : '#d1d5db'
-                        }} />
-                        <span style={{
-                            fontSize: '13px',
-                            fontWeight: 600,
-                            color: '#faa31a',
-                            textTransform: 'uppercase',
-                            letterSpacing: '1px'
-                        }}>
-                            {product.platform}
-                        </span>
-                        {product.isPriority && (
-                            <div style={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: '6px',
-                                padding: '4px 10px',
-                                borderRadius: '20px',
-                                background: isDark ? 'rgba(16, 185, 129, 0.15)' : '#d1fae5',
-                                marginLeft: '8px'
-                            }}>
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                    <path d="M23 6l-9.5 9.5-5-5L1 18" />
-                                    <path d="M17 6h6v6" />
-                                </svg>
-                                <span style={{
-                                    fontSize: '11px',
-                                    fontWeight: 600,
-                                    color: '#10b981',
-                                    textTransform: 'uppercase',
-                                    letterSpacing: '0.5px'
-                                }}>
-                                    Featured
-                                </span>
-                            </div>
-                        )}
-                    </div>
+        const ProductSlide = ({ product, isDark, slideNumber }) => {
+            const [showInstructionModal, setShowInstructionModal] = useState(false);
 
-                    {/* Title */}
-                    <h2 style={{
-                        fontSize: '42px',
-                        fontWeight: 700,
-                        color: isDark ? '#fff' : '#1b2955',
-                        lineHeight: 1.15,
-                        marginBottom: '8px'
-                    }} className="animate-fade animate-fade-delay-1">
-                        {product.title}
-                    </h2>
-
-                    {/* Subtitle */}
-                    <p style={{
-                        fontSize: '18px',
-                        color: '#faa31a',
-                        fontWeight: 500,
-                        marginBottom: '24px'
-                    }} className="animate-fade animate-fade-delay-1">
-                        {product.subtitle}
-                    </p>
-
-                    {/* Description */}
-                    <p style={{
-                        fontSize: '17px',
-                        color: isDark ? '#9ca3af' : '#6b7280',
-                        lineHeight: 1.7,
-                        marginBottom: '32px',
-                        maxWidth: '500px'
-                    }} className="animate-fade animate-fade-delay-2">
-                        {product.description}
-                    </p>
-
-                    {/* Key Points */}
-                    <div style={{
-                        display: 'grid',
-                        gridTemplateColumns: '1fr 1fr',
-                        gap: '16px',
-                        marginBottom: '40px'
-                    }}>
-                        {product.points.map((point, idx) => (
-                            <div
-                                key={idx}
-                                className={`animate-fade animate-fade-delay-${Math.min(idx + 2, 4)}`}
-                                style={{
-                                    display: 'flex',
-                                    alignItems: 'flex-start',
-                                    gap: '12px'
-                                }}
-                            >
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#faa31a" strokeWidth="2" style={{ marginTop: '2px', flexShrink: 0 }}>
-                                    <path d={Icons.check} />
-                                </svg>
-                                <span style={{
-                                    fontSize: '15px',
-                                    color: isDark ? '#e5e7eb' : '#374151',
-                                    lineHeight: 1.5
-                                }}>
-                                    {point}
-                                </span>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-
-                {/* Right: CTA Card */}
+            return (
                 <div style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center'
+                    height: '100%',
+                    display: 'grid',
+                    gridTemplateColumns: '1fr 1fr',
+                    padding: '120px 80px',
+                    gap: '80px',
+                    alignItems: 'center',
+                    position: 'relative' // Needed for modal overlay
                 }}>
-                    <div
-                        className="animate-fade animate-fade-delay-2"
-                        style={{
-                            width: '100%',
-                            maxWidth: '400px',
-                            padding: '48px',
-                            borderRadius: '16px',
-                            border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid #e5e7eb',
-                            background: isDark ? 'rgba(255,255,255,0.02)' : '#fff',
-                            textAlign: 'center'
-                        }}
-                    >
-                        {/* Icon */}
+                    {/* Instruction Modal Overlay */}
+                    {showInstructionModal && (
                         <div style={{
-                            width: '72px',
-                            height: '72px',
-                            borderRadius: '16px',
-                            background: isDark ? 'rgba(250,163,26,0.1)' : '#fef3cd',
+                            position: 'fixed',
+                            top: 0,
+                            left: 0,
+                            width: '100%',
+                            height: '100%',
+                            background: 'rgba(0, 0, 0, 0.6)',
+                            zIndex: 1000,
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            margin: '0 auto 24px'
-                        }}>
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#faa31a" strokeWidth="1.5">
-                                <path d={Icons.message} />
-                            </svg>
+                            backdropFilter: 'blur(5px)'
+                        }} onClick={() => setShowInstructionModal(false)}>
+                            <div style={{
+                                background: isDark ? '#1f2937' : '#ffffff',
+                                padding: '32px',
+                                borderRadius: '16px',
+                                width: '90%',
+                                maxWidth: '500px',
+                                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+                                border: `1px solid ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)'}`,
+                                animation: 'fadeIn 0.2s ease-out'
+                            }} onClick={e => e.stopPropagation()}>
+                                <div style={{
+                                    width: '48px',
+                                    height: '48px',
+                                    borderRadius: '12px',
+                                    background: 'rgba(250, 163, 26, 0.1)',
+                                    color: '#d97706',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    marginBottom: '20px'
+                                }}>
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                                    </svg>
+                                </div>
+
+                                <h3 style={{
+                                    fontSize: '20px',
+                                    fontWeight: 700,
+                                    color: isDark ? '#ffffff' : '#111827',
+                                    marginBottom: '12px'
+                                }}>Action Required</h3>
+
+                                <p style={{
+                                    fontSize: '16px',
+                                    color: isDark ? '#d1d5db' : '#4b5563',
+                                    lineHeight: 1.6,
+                                    marginBottom: '32px'
+                                }}>
+                                    {product.instruction}
+                                </p>
+
+                                <div style={{ display: 'flex', gap: '12px', justifyContent: 'flex-end' }}>
+                                    <button
+                                        onClick={() => setShowInstructionModal(false)}
+                                        style={{
+                                            padding: '10px 20px',
+                                            borderRadius: '8px',
+                                            background: 'transparent',
+                                            border: `1px solid ${isDark ? '#374151' : '#e5e7eb'}`,
+                                            color: isDark ? '#9ca3af' : '#4b5563',
+                                            fontWeight: 600,
+                                            cursor: 'pointer',
+                                            fontSize: '14px'
+                                        }}
+                                    >
+                                        Cancel
+                                    </button>
+                                    <button
+                                        onClick={() => {
+                                            window.open(product.demoLink, '_blank');
+                                            setShowInstructionModal(false);
+                                        }}
+                                        style={{
+                                            padding: '10px 20px',
+                                            borderRadius: '8px',
+                                            background: '#faa31a',
+                                            border: 'none',
+                                            color: '#ffffff',
+                                            fontWeight: 600,
+                                            cursor: 'pointer',
+                                            fontSize: '14px',
+                                            boxShadow: '0 4px 6px -1px rgba(250, 163, 26, 0.3)'
+                                        }}
+                                    >
+                                        Proceed to Demo
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Left: Content */}
+                    <div>
+                        {/* Slide Number & Platform */}
+                        <div style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '16px',
+                            marginBottom: '24px'
+                        }} className="animate-fade">
+                            <span style={{
+                                fontSize: '13px',
+                                fontWeight: 600,
+                                color: isDark ? '#6b7280' : '#9ca3af'
+                            }}>
+                                {String(slideNumber).padStart(2, '0')}
+                            </span>
+                            <div style={{
+                                width: '40px',
+                                height: '1px',
+                                background: isDark ? 'rgba(255,255,255,0.2)' : '#d1d5db'
+                            }} />
+                            <span style={{
+                                fontSize: '13px',
+                                fontWeight: 600,
+                                color: '#faa31a',
+                                textTransform: 'uppercase',
+                                letterSpacing: '1px'
+                            }}>
+                                {product.platform}
+                            </span>
+                            {product.isPriority && (
+                                <div style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '6px',
+                                    padding: '4px 10px',
+                                    borderRadius: '20px',
+                                    background: isDark ? 'rgba(16, 185, 129, 0.15)' : '#d1fae5',
+                                    marginLeft: '8px'
+                                }}>
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M23 6l-9.5 9.5-5-5L1 18" />
+                                        <path d="M17 6h6v6" />
+                                    </svg>
+                                    <span style={{
+                                        fontSize: '11px',
+                                        fontWeight: 600,
+                                        color: '#10b981',
+                                        textTransform: 'uppercase',
+                                        letterSpacing: '0.5px'
+                                    }}>
+                                        Featured
+                                    </span>
+                                </div>
+                            )}
                         </div>
 
-                        <h3 style={{
-                            fontSize: '22px',
-                            fontWeight: 600,
+                        {/* Title */}
+                        <h2 style={{
+                            fontSize: '42px',
+                            fontWeight: 700,
                             color: isDark ? '#fff' : '#1b2955',
-                            marginBottom: '12px'
-                        }}>
-                            Experience Live
-                        </h3>
+                            lineHeight: 1.15,
+                            marginBottom: '8px'
+                        }} className="animate-fade animate-fade-delay-1">
+                            {product.title}
+                        </h2>
 
+                        {/* Subtitle */}
                         <p style={{
-                            fontSize: '15px',
-                            color: isDark ? '#9ca3af' : '#6b7280',
-                            marginBottom: '32px',
-                            lineHeight: 1.6
-                        }}>
-                            Try this solution right now with our interactive demo.
+                            fontSize: '18px',
+                            color: '#faa31a',
+                            fontWeight: 500,
+                            marginBottom: '24px'
+                        }} className="animate-fade animate-fade-delay-1">
+                            {product.subtitle}
                         </p>
 
-                        {/* CTA Button */}
-                        <a
-                            href={product.demoLink}
-                            target={product.demoLink.startsWith('mailto') || product.demoLink.startsWith('tel') ? "_self" : "_blank"}
-                            rel="noopener noreferrer"
+                        {/* Description */}
+                        <p style={{
+                            fontSize: '17px',
+                            color: isDark ? '#9ca3af' : '#6b7280',
+                            lineHeight: 1.7,
+                            marginBottom: '32px',
+                            maxWidth: '500px'
+                        }} className="animate-fade animate-fade-delay-2">
+                            {product.description}
+                        </p>
+
+
+
+                        {/* Key Points */}
+                        <div style={{
+                            display: 'grid',
+                            gridTemplateColumns: '1fr 1fr',
+                            gap: '16px',
+                            marginBottom: '40px'
+                        }}>
+                            {product.points.map((point, idx) => (
+                                <div
+                                    key={idx}
+                                    className={`animate-fade animate-fade-delay-${Math.min(idx + 2, 4)}`}
+                                    style={{
+                                        display: 'flex',
+                                        alignItems: 'flex-start',
+                                        gap: '12px'
+                                    }}
+                                >
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#faa31a" strokeWidth="2" style={{ marginTop: '2px', flexShrink: 0 }}>
+                                        <path d={Icons.check} />
+                                    </svg>
+                                    <span style={{
+                                        fontSize: '15px',
+                                        color: isDark ? '#e5e7eb' : '#374151',
+                                        lineHeight: 1.5
+                                    }}>
+                                        {point}
+                                    </span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Right: CTA Card */}
+                    <div style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center'
+                    }}>
+                        <div
+                            className="animate-fade animate-fade-delay-2"
                             style={{
-                                display: 'inline-flex',
-                                alignItems: 'center',
-                                gap: '10px',
-                                padding: '16px 32px',
-                                borderRadius: '8px',
-                                background: '#1b2955',
-                                color: '#fff',
-                                fontSize: '15px',
-                                fontWeight: 600,
-                                textDecoration: 'none',
-                                transition: 'all 0.2s'
-                            }}
-                            onMouseEnter={(e) => {
-                                e.currentTarget.style.background = '#2a3b75';
-                                e.currentTarget.style.transform = 'translateY(-2px)';
-                            }}
-                            onMouseLeave={(e) => {
-                                e.currentTarget.style.background = '#1b2955';
-                                e.currentTarget.style.transform = 'translateY(0)';
+                                width: '100%',
+                                maxWidth: '400px',
+                                padding: '48px',
+                                borderRadius: '16px',
+                                border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid #e5e7eb',
+                                background: isDark ? 'rgba(255,255,255,0.02)' : '#fff',
+                                textAlign: 'center'
                             }}
                         >
-                            {product.buttonText}
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                <path d={Icons.arrowRight} />
-                            </svg>
-                        </a>
+                            {/* Icon */}
+                            <div style={{
+                                width: '72px',
+                                height: '72px',
+                                borderRadius: '16px',
+                                background: isDark ? 'rgba(250,163,26,0.1)' : '#fef3cd',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                margin: '0 auto 24px'
+                            }}>
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#faa31a" strokeWidth="1.5">
+                                    <path d={Icons.message} />
+                                </svg>
+                            </div>
+
+                            <h3 style={{
+                                fontSize: '22px',
+                                fontWeight: 600,
+                                color: isDark ? '#fff' : '#1b2955',
+                                marginBottom: '12px'
+                            }}>
+                                Experience Live
+                            </h3>
+
+                            <p style={{
+                                fontSize: '15px',
+                                color: isDark ? '#9ca3af' : '#6b7280',
+                                marginBottom: '32px',
+                                lineHeight: 1.6
+                            }}>
+                                Try this solution right now with our interactive demo.
+                            </p>
+
+                            {/* CTA Button */}
+                            {product.sampleReport && (
+                                <a
+                                    href={product.sampleReport}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    style={{
+                                        display: 'inline-flex',
+                                        alignItems: 'center',
+                                        gap: '10px',
+                                        padding: '16px 32px',
+                                        borderRadius: '8px',
+                                        background: 'transparent',
+                                        border: `1px solid ${isDark ? 'rgba(255,255,255,0.2)' : '#e5e7eb'}`,
+                                        color: isDark ? '#fff' : '#1b2955',
+                                        fontSize: '15px',
+                                        fontWeight: 600,
+                                        textDecoration: 'none',
+                                        transition: 'all 0.2s',
+                                        marginRight: '12px',
+                                        marginBottom: '12px'
+                                    }}
+                                    onMouseEnter={(e) => {
+                                        e.currentTarget.style.background = isDark ? 'rgba(255,255,255,0.05)' : '#f3f4f6';
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        e.currentTarget.style.background = 'transparent';
+                                    }}
+                                >
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                        <path d={Icons.grid} />
+                                    </svg>
+                                    View Sample Report
+                                </a>
+                            )}
+
+                            <a
+                                href={product.demoLink}
+                                onClick={(e) => {
+                                    if (product.instruction) {
+                                        e.preventDefault();
+                                        setShowInstructionModal(true);
+                                    }
+                                }}
+                                target={product.demoLink.startsWith('mailto') || product.demoLink.startsWith('tel') ? "_self" : "_blank"}
+                                rel="noopener noreferrer"
+                                style={{
+                                    display: 'inline-flex',
+                                    alignItems: 'center',
+                                    gap: '10px',
+                                    padding: '16px 32px',
+                                    borderRadius: '8px',
+                                    background: '#1b2955',
+                                    color: '#fff',
+                                    fontSize: '15px',
+                                    fontWeight: 600,
+                                    textDecoration: 'none',
+                                    transition: 'all 0.2s'
+                                }}
+                                onMouseEnter={(e) => {
+                                    e.currentTarget.style.background = '#2a3b75';
+                                    e.currentTarget.style.transform = 'translateY(-2px)';
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.currentTarget.style.background = '#1b2955';
+                                    e.currentTarget.style.transform = 'translateY(0)';
+                                }}
+                            >
+                                {product.buttonText}
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                    <path d={Icons.arrowRight} />
+                                </svg>
+                            </a>
+
+
+
+                            {/* Extra Buttons */}
+                            {product.extraButtons && (
+                                <div style={{ display: 'flex', gap: '12px', marginTop: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
+                                    {product.extraButtons.map((btn, idx) => (
+                                        <a
+                                            key={idx}
+                                            href={btn.link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            style={{
+                                                padding: '8px 16px',
+                                                borderRadius: '6px',
+                                                background: 'transparent',
+                                                border: `1px solid ${isDark ? 'rgba(255,255,255,0.2)' : '#e5e7eb'}`,
+                                                color: isDark ? '#9ca3af' : '#6b7280',
+                                                fontSize: '13px',
+                                                fontWeight: 500,
+                                                textDecoration: 'none',
+                                                transition: 'all 0.2s'
+                                            }}
+                                            onMouseEnter={(e) => {
+                                                e.currentTarget.style.borderColor = '#faa31a';
+                                                e.currentTarget.style.color = '#faa31a';
+                                            }}
+                                            onMouseLeave={(e) => {
+                                                e.currentTarget.style.borderColor = isDark ? 'rgba(255,255,255,0.2)' : '#e5e7eb';
+                                                e.currentTarget.style.color = isDark ? '#9ca3af' : '#6b7280';
+                                            }}
+                                        >
+                                            {btn.text}
+                                        </a>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
                     </div>
-                </div>
-            </div>
-        );
+                </div >
+            );
+        };
 
         // Main App
         const App = () => {

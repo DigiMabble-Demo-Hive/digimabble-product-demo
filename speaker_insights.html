@@ -1,0 +1,1120 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Performance Insights</title>
+
+    <style type="text/css">
+        /* RESETS */
+        body,
+        table,
+        td,
+        a {
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+
+        table,
+        td {
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+
+        img {
+            -ms-interpolation-mode: bicubic;
+            border: 0;
+            outline: none;
+            text-decoration: none;
+        }
+
+        /* GENERAL STYLES */
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100% !important;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+            background-color: #F1F5F9;
+            /* Slate 100 */
+            color: #334155;
+            /* Slate 700 */
+            line-height: 1.6;
+        }
+
+        /* UTILITIES */
+        .wrapper {
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        .main-container {
+            margin: 0 auto;
+            max-width: 640px;
+        }
+
+        /* TYPOGRAPHY */
+        h1 {
+            margin: 0;
+            color: #0F172A;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+
+        h2 {
+            margin: 0;
+            color: #1E293B;
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
+        h3 {
+            margin: 0;
+            color: #334155;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        p {
+            margin: 0 0 1em 0;
+            font-size: 15px;
+            color: #475569;
+        }
+
+        /* COMPONENTS */
+        .card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            border: 1px solid #E2E8F0;
+            /* Slate 200 */
+            overflow: hidden;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 9999px;
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 1;
+        }
+
+        /* PROGRESS BAR */
+        .progress-track {
+            background-color: #F1F5F9;
+            border-radius: 4px;
+            height: 8px;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .progress-fill {
+            height: 8px;
+            border-radius: 4px;
+        }
+
+        /* MOBILE */
+        @media screen and (max-width: 600px) {
+            .mobile-padding {
+                padding: 20px !important;
+            }
+
+            .stack-column {
+                display: block !important;
+                width: 100% !important;
+                padding-right: 0 !important;
+                margin-bottom: 20px;
+            }
+
+            .hide-mobile {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body style="margin: 0; padding: 0; background-color: #F1F5F9;">
+
+    <table class="wrapper" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #F1F5F9;">
+        <tr>
+            <td align="center" style="padding: 40px 20px;">
+
+                <!-- LOGO / HEADER -->
+                <table class="main-container" width="100%" cellpadding="0" cellspacing="0" border="0"
+                    style="margin-bottom: 24px;">
+                    <tr>
+                        <td align="left">
+                            <!-- Replace with your actual Logo URL -->
+                            <div
+                                style="font-weight: 800; font-size: 20px; color: #4F46E5; display: flex; align-items: center;">
+                                <span
+                                    style="background: #4F46E5; color: #FFF; width: 28px; height: 28px; border-radius: 6px; display: inline-block; text-align: center; line-height: 28px; margin-right: 8px;">AI</span>
+                                Coaching<span style="color:#94A3B8">Agent</span>
+                            </div>
+                        </td>
+                        <td align="right" style="font-size: 13px; color: #64748B;">
+                            Report ID: #91840<br>
+                            17/2/2026
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- MAIN CARD -->
+                <table class="main-container card" width="100%" cellpadding="0" cellspacing="0" border="0"
+                    style="background: #FFFFFF;">
+
+                    <!-- REPORT TITLE HERO -->
+                    <tr>
+                        <td style="padding: 32px 32px 24px 32px; border-bottom: 1px solid #F1F5F9;">
+                            <span
+                                style="background: #EEF2FF; color: #4F46E5; border: 1px solid #E0E7FF; font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.05em;">
+                                Completed Analysis
+                            </span>
+                            <h1 style="margin-top: 12px;">Speaker Insights</h1>
+                            <p style="margin-bottom: 0; margin-top: 8px; font-size: 16px;">
+                                Here is the breakdown of the recent session.
+                            </p>
+                        </td>
+                    </tr>
+
+                    <!-- CONTEXT SUMMARY SECTION -->
+                    <tr>
+                        <td style="padding: 32px;">
+                            <h3 style="margin-bottom: 16px;">Executive Summary</h3>
+                            <div
+                                style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 20px;">
+                                <p style="margin-bottom: 16px; color: #334155; font-size: 15px;">
+                                    This meeting focused on discussing the development, capabilities, and
+                                    commercialization strategy for an AI-driven enterprise solution involving internal
+                                    document integration, multilingual support, email and appointment management
+                                    systems, and a speaker coaching agent. Key participants explored technical features,
+                                    industrialization challenges, data privacy concerns, and collaboration plans to
+                                    accelerate go-to-market efforts.
+                                </p>
+                                <table width="100%" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td valign="top" style="padding-top: 12px; border-top: 1px solid #E2E8F0;">
+                                            <span
+                                                style="font-size: 12px; font-weight: 700; color: #64748B; text-transform: uppercase; letter-spacing: 0.05em;">Key
+                                                Takeaways</span>
+                                            <ul
+                                                style="padding-left: 20px; margin-top: 10px; margin-bottom: 0; color: #475569;">
+                                                <li style="margin-bottom: 6px;">Discussion on use cases and selling
+                                                    points targeting large companies with multilingual functionalities.
+                                                </li>
+                                                <li style="margin-bottom: 6px;">Presentation of an AI coaching agent
+                                                    providing speaker analysis with visual reports, mistake
+                                                    identification, and improvement plans.</li>
+                                                <li style="margin-bottom: 6px;">Demonstrations of AI-powered email
+                                                    management systems tailored for general and healthcare-specific
+                                                    needs.</li>
+                                                <li style="margin-bottom: 6px;">Considerations about GDPR and ethical
+                                                    implications of AI call monitoring and performance tracking.</li>
+                                                <li style="margin-bottom: 6px;">Emphasis on robust architecture, cost
+                                                    modeling, and sustainability for long-term platform commitment.</li>
+                                                <li style="margin-bottom: 6px;">Agreement to move forward with further
+                                                    collaboration and future meetings to align operational and financial
+                                                    models.</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+
+                </table>
+
+                <!-- SPACER -->
+                <div style="height: 24px; line-height: 24px;">&nbsp;</div>
+
+                <!-- SPEAKER LOOP -->
+
+                <table class="main-container card" width="100%" cellpadding="0" cellspacing="0" border="0"
+                    style="background: #FFFFFF; margin-bottom: 24px;">
+                    <!-- Speaker Header -->
+                    <tr>
+                        <td style="padding: 24px; border-bottom: 1px solid #F1F5F9;">
+                            <table width="100%">
+                                <tr>
+                                    <td width="48" valign="middle">
+                                        <!-- Avatar Placeholder -->
+                                        <div
+                                            style="width: 42px; height: 42px; background: linear-gradient(135deg, #6366F1 0%, #4338CA 100%); color: #fff; border-radius: 99px; text-align: center; line-height: 42px; font-weight: 700; font-size: 18px;">
+                                            C
+                                        </div>
+                                    </td>
+                                    <td valign="middle" style="padding-left: 12px;">
+                                        <h2 style="font-size: 18px;">Charles Delhaye</h2>
+                                        <p style="margin: 0; font-size: 13px; color: #64748B;">thoughtful, deliberate,
+                                            collaborative</p>
+                                    </td>
+                                    <td align="right">
+                                        <span
+                                            style="font-size: 12px; color: #94A3B8; font-family: monospace;">SPEAKER_ID_
+                                            1</span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- TWO COLUMN LAYOUT (Strengths / Weaknesses) -->
+                    <tr>
+                        <td style="padding: 24px;">
+                            <table width="100%" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td class="stack-column" width="48%" valign="top" style="padding-right: 2%;">
+                                        <h3 style="color: #166534; margin-bottom: 12px; font-size: 12px;">
+                                            <span
+                                                style="background:#DCFCE7; padding: 2px 6px; border-radius: 4px;">+</span>
+                                            Strengths
+                                        </h3>
+                                        <ul style="padding-left: 0; list-style: none; margin: 0;">
+
+                                            <li
+                                                style="padding-left: 16px; position: relative; margin-bottom: 8px; font-size: 14px; color: #334155;">
+                                                <span
+                                                    style="position: absolute; left: 0; color: #16A34A; font-weight: bold;">•</span>
+                                                Provides detailed, insightful feedback especially on industrialization
+                                                and practical implementation issues.
+                                            </li>
+                                            <li
+                                                style="padding-left: 16px; position: relative; margin-bottom: 8px; font-size: 14px; color: #334155;">
+                                                <span
+                                                    style="position: absolute; left: 0; color: #16A34A; font-weight: bold;">•</span>
+                                                Emphasizes ethical and privacy concerns effectively, showing strong
+                                                situational awareness.
+                                            </li>
+                                            <li
+                                                style="padding-left: 16px; position: relative; margin-bottom: 8px; font-size: 14px; color: #334155;">
+                                                <span
+                                                    style="position: absolute; left: 0; color: #16A34A; font-weight: bold;">•</span>
+                                                Clear in expressing expectations and strategic priorities such as
+                                                costing models and sustainability.
+                                            </li>
+                                            <li
+                                                style="padding-left: 16px; position: relative; margin-bottom: 8px; font-size: 14px; color: #334155;">
+                                                <span
+                                                    style="position: absolute; left: 0; color: #16A34A; font-weight: bold;">•</span>
+                                                Encourages alignment and shared understanding, fostering collaboration.
+                                            </li>
+                                        </ul>
+                                    </td>
+                                    <td class="stack-column" width="48%" valign="top">
+                                        <h3 style="color: #991B1B; margin-bottom: 12px; font-size: 12px;">
+                                            <span
+                                                style="background:#FEE2E2; padding: 2px 6px; border-radius: 4px;">!</span>
+                                            Focus Areas
+                                        </h3>
+                                        <ul style="padding-left: 0; list-style: none; margin: 0;">
+
+                                            <li
+                                                style="padding-left: 16px; position: relative; margin-bottom: 8px; font-size: 14px; color: #334155;">
+                                                <span
+                                                    style="position: absolute; left: 0; color: #EF4444; font-weight: bold;">•</span>
+                                                Sometimes hesitant with filler words (e.g., "okay", "you know") that
+                                                slightly affect fluency.
+                                            </li>
+                                            <li
+                                                style="padding-left: 16px; position: relative; margin-bottom: 8px; font-size: 14px; color: #334155;">
+                                                <span
+                                                    style="position: absolute; left: 0; color: #EF4444; font-weight: bold;">•</span>
+                                                Occasional long-winded points that may challenge listeners to maintain
+                                                full focus.
+                                            </li>
+                                            <li
+                                                style="padding-left: 16px; position: relative; margin-bottom: 8px; font-size: 14px; color: #334155;">
+                                                <span
+                                                    style="position: absolute; left: 0; color: #EF4444; font-weight: bold;">•</span>
+                                                Could improve sharper summarization to maintain meeting pace.
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- METRICS DASHBOARD -->
+                    <tr>
+                        <td style="padding: 0 24px 24px 24px;">
+                            <div
+                                style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 20px;">
+                                <h3 style="margin-bottom: 16px;">Performance Metrics</h3>
+
+
+                                <table width="100%" style="margin-bottom: 10px;">
+                                    <tr>
+                                        <td width="35%" style="font-size: 13px; font-weight: 500; color: #475569;">
+                                            Clarity</td>
+                                        <td width="55%" style="padding: 0 10px;">
+                                            <div class="progress-track">
+                                                <div class="progress-fill"
+                                                    style="width: 80%; background-color: #10B981;"></div>
+                                            </div>
+                                        </td>
+                                        <td width="10%"
+                                            style="font-size: 13px; font-weight: 700; color: #0F172A; text-align: right;">
+                                            8</td>
+                                    </tr>
+                                </table>
+
+                                <table width="100%" style="margin-bottom: 10px;">
+                                    <tr>
+                                        <td width="35%" style="font-size: 13px; font-weight: 500; color: #475569;">
+                                            Confidence</td>
+                                        <td width="55%" style="padding: 0 10px;">
+                                            <div class="progress-track">
+                                                <div class="progress-fill"
+                                                    style="width: 80%; background-color: #10B981;"></div>
+                                            </div>
+                                        </td>
+                                        <td width="10%"
+                                            style="font-size: 13px; font-weight: 700; color: #0F172A; text-align: right;">
+                                            8</td>
+                                    </tr>
+                                </table>
+
+                                <table width="100%" style="margin-bottom: 10px;">
+                                    <tr>
+                                        <td width="35%" style="font-size: 13px; font-weight: 500; color: #475569;">
+                                            Structure & Flow</td>
+                                        <td width="55%" style="padding: 0 10px;">
+                                            <div class="progress-track">
+                                                <div class="progress-fill"
+                                                    style="width: 70%; background-color: #6366F1;"></div>
+                                            </div>
+                                        </td>
+                                        <td width="10%"
+                                            style="font-size: 13px; font-weight: 700; color: #0F172A; text-align: right;">
+                                            7</td>
+                                    </tr>
+                                </table>
+
+                                <table width="100%" style="margin-bottom: 10px;">
+                                    <tr>
+                                        <td width="35%" style="font-size: 13px; font-weight: 500; color: #475569;">Tech
+                                            Depth</td>
+                                        <td width="55%" style="padding: 0 10px;">
+                                            <div class="progress-track">
+                                                <div class="progress-fill"
+                                                    style="width: 80%; background-color: #10B981;"></div>
+                                            </div>
+                                        </td>
+                                        <td width="10%"
+                                            style="font-size: 13px; font-weight: 700; color: #0F172A; text-align: right;">
+                                            8</td>
+                                    </tr>
+                                </table>
+
+                                <table width="100%" style="margin-bottom: 10px;">
+                                    <tr>
+                                        <td width="35%" style="font-size: 13px; font-weight: 500; color: #475569;">
+                                            Persuasiveness</td>
+                                        <td width="55%" style="padding: 0 10px;">
+                                            <div class="progress-track">
+                                                <div class="progress-fill"
+                                                    style="width: 80%; background-color: #10B981;"></div>
+                                            </div>
+                                        </td>
+                                        <td width="10%"
+                                            style="font-size: 13px; font-weight: 700; color: #0F172A; text-align: right;">
+                                            8</td>
+                                    </tr>
+                                </table>
+
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- TAGS -->
+                    <tr>
+                        <td style="padding: 0 24px 24px 24px;">
+                            <div style="border-top: 1px solid #E2E8F0; padding-top: 16px;">
+                                <span
+                                    style="font-size: 11px; font-weight: 700; color: #94A3B8; text-transform: uppercase; margin-right: 8px;">Patterns:</span>
+                                <span class="badge"
+                                    style="background: #F1F5F9; color: #475569; border: 1px solid #E2E8F0;">Fillers:
+                                    Medium</span>
+                                <span class="badge"
+                                    style="background: #F1F5F9; color: #475569; border: 1px solid #E2E8F0;">Interruptions:
+                                    Low</span>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- MISTAKES -->
+
+                    <tr>
+                        <td style="padding: 0 24px 24px 24px;">
+                            <h3 style="margin-bottom: 12px; color: #B91C1C;">Critical Moments</h3>
+
+                            <div
+                                style="border-left: 3px solid #EF4444; background: #FEF2F2; padding: 12px 16px; border-radius: 0 6px 6px 0; margin-bottom: 8px;">
+                                <div style="font-size: 13px; font-weight: 700; color: #991B1B;">Filler words and
+                                    hesitations</div>
+                                <div style="font-size: 13px; color: #7F1D1D; margin: 4px 0;">Uses filler words such as
+                                    "okay", "you know" and slight hesitations that intermittently break flow.</div>
+                                <div
+                                    style="font-size: 12px; font-family: monospace; color: #B91C1C; background: rgba(255,255,255,0.5); padding: 4px; border-radius: 4px; display: inline-block; margin-top: 4px;">
+                                    ""Okay, and that could be very interesting as well for a country as Belgium to have
+                                    different participants in different languages.""</div>
+                            </div>
+
+                        </td>
+                    </tr>
+
+
+                </table>
+
+                <table class="main-container card" width="100%" cellpadding="0" cellspacing="0" border="0"
+                    style="background: #FFFFFF; margin-bottom: 24px;">
+                    <!-- Speaker Header -->
+                    <tr>
+                        <td style="padding: 24px; border-bottom: 1px solid #F1F5F9;">
+                            <table width="100%">
+                                <tr>
+                                    <td width="48" valign="middle">
+                                        <!-- Avatar Placeholder -->
+                                        <div
+                                            style="width: 42px; height: 42px; background: linear-gradient(135deg, #6366F1 0%, #4338CA 100%); color: #fff; border-radius: 99px; text-align: center; line-height: 42px; font-weight: 700; font-size: 18px;">
+                                            J
+                                        </div>
+                                    </td>
+                                    <td valign="middle" style="padding-left: 12px;">
+                                        <h2 style="font-size: 18px;">Julian Verstraete</h2>
+                                        <p style="margin: 0; font-size: 13px; color: #64748B;">concise, supportive,
+                                            technical</p>
+                                    </td>
+                                    <td align="right">
+                                        <span
+                                            style="font-size: 12px; color: #94A3B8; font-family: monospace;">SPEAKER_ID_
+                                            2</span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- TWO COLUMN LAYOUT (Strengths / Weaknesses) -->
+                    <tr>
+                        <td style="padding: 24px;">
+                            <table width="100%" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td class="stack-column" width="48%" valign="top" style="padding-right: 2%;">
+                                        <h3 style="color: #166534; margin-bottom: 12px; font-size: 12px;">
+                                            <span
+                                                style="background:#DCFCE7; padding: 2px 6px; border-radius: 4px;">+</span>
+                                            Strengths
+                                        </h3>
+                                        <ul style="padding-left: 0; list-style: none; margin: 0;">
+
+                                            <li
+                                                style="padding-left: 16px; position: relative; margin-bottom: 8px; font-size: 14px; color: #334155;">
+                                                <span
+                                                    style="position: absolute; left: 0; color: #16A34A; font-weight: bold;">•</span>
+                                                Provides clear technical clarifications and confirmations.
+                                            </li>
+                                            <li
+                                                style="padding-left: 16px; position: relative; margin-bottom: 8px; font-size: 14px; color: #334155;">
+                                                <span
+                                                    style="position: absolute; left: 0; color: #16A34A; font-weight: bold;">•</span>
+                                                Balances discussion by acknowledging others' points and adding
+                                                constructive input.
+                                            </li>
+                                            <li
+                                                style="padding-left: 16px; position: relative; margin-bottom: 8px; font-size: 14px; color: #334155;">
+                                                <span
+                                                    style="position: absolute; left: 0; color: #16A34A; font-weight: bold;">•</span>
+                                                Communicates confidence in capabilities and future plans.
+                                            </li>
+                                        </ul>
+                                    </td>
+                                    <td class="stack-column" width="48%" valign="top">
+                                        <h3 style="color: #991B1B; margin-bottom: 12px; font-size: 12px;">
+                                            <span
+                                                style="background:#FEE2E2; padding: 2px 6px; border-radius: 4px;">!</span>
+                                            Focus Areas
+                                        </h3>
+                                        <ul style="padding-left: 0; list-style: none; margin: 0;">
+
+                                            <li
+                                                style="padding-left: 16px; position: relative; margin-bottom: 8px; font-size: 14px; color: #334155;">
+                                                <span
+                                                    style="position: absolute; left: 0; color: #EF4444; font-weight: bold;">•</span>
+                                                Tends to use brief affirmations or filler phrases such as "okay", "yeah"
+                                                frequently.
+                                            </li>
+                                            <li
+                                                style="padding-left: 16px; position: relative; margin-bottom: 8px; font-size: 14px; color: #334155;">
+                                                <span
+                                                    style="position: absolute; left: 0; color: #EF4444; font-weight: bold;">•</span>
+                                                Speech flow is sometimes segmented and could be smoother.
+                                            </li>
+                                            <li
+                                                style="padding-left: 16px; position: relative; margin-bottom: 8px; font-size: 14px; color: #334155;">
+                                                <span
+                                                    style="position: absolute; left: 0; color: #EF4444; font-weight: bold;">•</span>
+                                                Limited elaboration on complex points; often defers to others.
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- METRICS DASHBOARD -->
+                    <tr>
+                        <td style="padding: 0 24px 24px 24px;">
+                            <div
+                                style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 20px;">
+                                <h3 style="margin-bottom: 16px;">Performance Metrics</h3>
+
+
+                                <table width="100%" style="margin-bottom: 10px;">
+                                    <tr>
+                                        <td width="35%" style="font-size: 13px; font-weight: 500; color: #475569;">
+                                            Clarity</td>
+                                        <td width="55%" style="padding: 0 10px;">
+                                            <div class="progress-track">
+                                                <div class="progress-fill"
+                                                    style="width: 70%; background-color: #6366F1;"></div>
+                                            </div>
+                                        </td>
+                                        <td width="10%"
+                                            style="font-size: 13px; font-weight: 700; color: #0F172A; text-align: right;">
+                                            7</td>
+                                    </tr>
+                                </table>
+
+                                <table width="100%" style="margin-bottom: 10px;">
+                                    <tr>
+                                        <td width="35%" style="font-size: 13px; font-weight: 500; color: #475569;">
+                                            Confidence</td>
+                                        <td width="55%" style="padding: 0 10px;">
+                                            <div class="progress-track">
+                                                <div class="progress-fill"
+                                                    style="width: 70%; background-color: #6366F1;"></div>
+                                            </div>
+                                        </td>
+                                        <td width="10%"
+                                            style="font-size: 13px; font-weight: 700; color: #0F172A; text-align: right;">
+                                            7</td>
+                                    </tr>
+                                </table>
+
+                                <table width="100%" style="margin-bottom: 10px;">
+                                    <tr>
+                                        <td width="35%" style="font-size: 13px; font-weight: 500; color: #475569;">
+                                            Structure & Flow</td>
+                                        <td width="55%" style="padding: 0 10px;">
+                                            <div class="progress-track">
+                                                <div class="progress-fill"
+                                                    style="width: 60%; background-color: #6366F1;"></div>
+                                            </div>
+                                        </td>
+                                        <td width="10%"
+                                            style="font-size: 13px; font-weight: 700; color: #0F172A; text-align: right;">
+                                            6</td>
+                                    </tr>
+                                </table>
+
+                                <table width="100%" style="margin-bottom: 10px;">
+                                    <tr>
+                                        <td width="35%" style="font-size: 13px; font-weight: 500; color: #475569;">Tech
+                                            Depth</td>
+                                        <td width="55%" style="padding: 0 10px;">
+                                            <div class="progress-track">
+                                                <div class="progress-fill"
+                                                    style="width: 80%; background-color: #10B981;"></div>
+                                            </div>
+                                        </td>
+                                        <td width="10%"
+                                            style="font-size: 13px; font-weight: 700; color: #0F172A; text-align: right;">
+                                            8</td>
+                                    </tr>
+                                </table>
+
+                                <table width="100%" style="margin-bottom: 10px;">
+                                    <tr>
+                                        <td width="35%" style="font-size: 13px; font-weight: 500; color: #475569;">
+                                            Persuasiveness</td>
+                                        <td width="55%" style="padding: 0 10px;">
+                                            <div class="progress-track">
+                                                <div class="progress-fill"
+                                                    style="width: 70%; background-color: #6366F1;"></div>
+                                            </div>
+                                        </td>
+                                        <td width="10%"
+                                            style="font-size: 13px; font-weight: 700; color: #0F172A; text-align: right;">
+                                            7</td>
+                                    </tr>
+                                </table>
+
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- TAGS -->
+                    <tr>
+                        <td style="padding: 0 24px 24px 24px;">
+                            <div style="border-top: 1px solid #E2E8F0; padding-top: 16px;">
+                                <span
+                                    style="font-size: 11px; font-weight: 700; color: #94A3B8; text-transform: uppercase; margin-right: 8px;">Patterns:</span>
+                                <span class="badge"
+                                    style="background: #F1F5F9; color: #475569; border: 1px solid #E2E8F0;">Fillers:
+                                    Medium</span>
+                                <span class="badge"
+                                    style="background: #F1F5F9; color: #475569; border: 1px solid #E2E8F0;">Interruptions:
+                                    Low</span>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- MISTAKES -->
+
+                    <tr>
+                        <td style="padding: 0 24px 24px 24px;">
+                            <h3 style="margin-bottom: 12px; color: #B91C1C;">Critical Moments</h3>
+
+                            <div
+                                style="border-left: 3px solid #EF4444; background: #FEF2F2; padding: 12px 16px; border-radius: 0 6px 6px 0; margin-bottom: 8px;">
+                                <div style="font-size: 13px; font-weight: 700; color: #991B1B;">Filler words and brief
+                                    hesitations</div>
+                                <div style="font-size: 13px; color: #7F1D1D; margin: 4px 0;">Uses filler words and brief
+                                    pauses such as "okay", "yeah" which reduce speech fluidity.</div>
+                                <div
+                                    style="font-size: 12px; font-family: monospace; color: #B91C1C; background: rgba(255,255,255,0.5); padding: 4px; border-radius: 4px; display: inline-block; margin-top: 4px;">
+                                    ""Yeah, I think we can take another 15 minutes and quickly go through what.""</div>
+                            </div>
+
+                        </td>
+                    </tr>
+
+
+                </table>
+
+                <table class="main-container card" width="100%" cellpadding="0" cellspacing="0" border="0"
+                    style="background: #FFFFFF; margin-bottom: 24px;">
+                    <!-- Speaker Header -->
+                    <tr>
+                        <td style="padding: 24px; border-bottom: 1px solid #F1F5F9;">
+                            <table width="100%">
+                                <tr>
+                                    <td width="48" valign="middle">
+                                        <!-- Avatar Placeholder -->
+                                        <div
+                                            style="width: 42px; height: 42px; background: linear-gradient(135deg, #6366F1 0%, #4338CA 100%); color: #fff; border-radius: 99px; text-align: center; line-height: 42px; font-weight: 700; font-size: 18px;">
+                                            L
+                                        </div>
+                                    </td>
+                                    <td valign="middle" style="padding-left: 12px;">
+                                        <h2 style="font-size: 18px;">Lucas Dubois</h2>
+                                        <p style="margin: 0; font-size: 13px; color: #64748B;">informative, detailed,
+                                            moderately formal</p>
+                                    </td>
+                                    <td align="right">
+                                        <span
+                                            style="font-size: 12px; color: #94A3B8; font-family: monospace;">SPEAKER_ID_
+                                            3</span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- TWO COLUMN LAYOUT (Strengths / Weaknesses) -->
+                    <tr>
+                        <td style="padding: 24px;">
+                            <table width="100%" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td class="stack-column" width="48%" valign="top" style="padding-right: 2%;">
+                                        <h3 style="color: #166534; margin-bottom: 12px; font-size: 12px;">
+                                            <span
+                                                style="background:#DCFCE7; padding: 2px 6px; border-radius: 4px;">+</span>
+                                            Strengths
+                                        </h3>
+                                        <ul style="padding-left: 0; list-style: none; margin: 0;">
+
+                                            <li
+                                                style="padding-left: 16px; position: relative; margin-bottom: 8px; font-size: 14px; color: #334155;">
+                                                <span
+                                                    style="position: absolute; left: 0; color: #16A34A; font-weight: bold;">•</span>
+                                                Provides comprehensive explanations of technical features and
+                                                demonstrations.
+                                            </li>
+                                            <li
+                                                style="padding-left: 16px; position: relative; margin-bottom: 8px; font-size: 14px; color: #334155;">
+                                                <span
+                                                    style="position: absolute; left: 0; color: #16A34A; font-weight: bold;">•</span>
+                                                Uses structured approach to present analysis and tools clearly.
+                                            </li>
+                                            <li
+                                                style="padding-left: 16px; position: relative; margin-bottom: 8px; font-size: 14px; color: #334155;">
+                                                <span
+                                                    style="position: absolute; left: 0; color: #16A34A; font-weight: bold;">•</span>
+                                                Shows confidence in technical depth and product knowledge.
+                                            </li>
+                                        </ul>
+                                    </td>
+                                    <td class="stack-column" width="48%" valign="top">
+                                        <h3 style="color: #991B1B; margin-bottom: 12px; font-size: 12px;">
+                                            <span
+                                                style="background:#FEE2E2; padding: 2px 6px; border-radius: 4px;">!</span>
+                                            Focus Areas
+                                        </h3>
+                                        <ul style="padding-left: 0; list-style: none; margin: 0;">
+
+                                            <li
+                                                style="padding-left: 16px; position: relative; margin-bottom: 8px; font-size: 14px; color: #334155;">
+                                                <span
+                                                    style="position: absolute; left: 0; color: #EF4444; font-weight: bold;">•</span>
+                                                Speech sometimes contains grammatical errors and awkward phrasing.
+                                            </li>
+                                            <li
+                                                style="padding-left: 16px; position: relative; margin-bottom: 8px; font-size: 14px; color: #334155;">
+                                                <span
+                                                    style="position: absolute; left: 0; color: #EF4444; font-weight: bold;">•</span>
+                                                Presentation flow can be interrupted by verbosity or over-detailed
+                                                descriptions.
+                                            </li>
+                                            <li
+                                                style="padding-left: 16px; position: relative; margin-bottom: 8px; font-size: 14px; color: #334155;">
+                                                <span
+                                                    style="position: absolute; left: 0; color: #EF4444; font-weight: bold;">•</span>
+                                                Frequent filler or redundant phrases such as "so", "like", "just" affect
+                                                clarity.
+                                            </li>
+                                            <li
+                                                style="padding-left: 16px; position: relative; margin-bottom: 8px; font-size: 14px; color: #334155;">
+                                                <span
+                                                    style="position: absolute; left: 0; color: #EF4444; font-weight: bold;">•</span>
+                                                Tends to speak rapidly with occasional hesitations, impacting
+                                                comprehension.
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- METRICS DASHBOARD -->
+                    <tr>
+                        <td style="padding: 0 24px 24px 24px;">
+                            <div
+                                style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 20px;">
+                                <h3 style="margin-bottom: 16px;">Performance Metrics</h3>
+
+
+                                <table width="100%" style="margin-bottom: 10px;">
+                                    <tr>
+                                        <td width="35%" style="font-size: 13px; font-weight: 500; color: #475569;">
+                                            Clarity</td>
+                                        <td width="55%" style="padding: 0 10px;">
+                                            <div class="progress-track">
+                                                <div class="progress-fill"
+                                                    style="width: 60%; background-color: #6366F1;"></div>
+                                            </div>
+                                        </td>
+                                        <td width="10%"
+                                            style="font-size: 13px; font-weight: 700; color: #0F172A; text-align: right;">
+                                            6</td>
+                                    </tr>
+                                </table>
+
+                                <table width="100%" style="margin-bottom: 10px;">
+                                    <tr>
+                                        <td width="35%" style="font-size: 13px; font-weight: 500; color: #475569;">
+                                            Confidence</td>
+                                        <td width="55%" style="padding: 0 10px;">
+                                            <div class="progress-track">
+                                                <div class="progress-fill"
+                                                    style="width: 70%; background-color: #6366F1;"></div>
+                                            </div>
+                                        </td>
+                                        <td width="10%"
+                                            style="font-size: 13px; font-weight: 700; color: #0F172A; text-align: right;">
+                                            7</td>
+                                    </tr>
+                                </table>
+
+                                <table width="100%" style="margin-bottom: 10px;">
+                                    <tr>
+                                        <td width="35%" style="font-size: 13px; font-weight: 500; color: #475569;">
+                                            Structure & Flow</td>
+                                        <td width="55%" style="padding: 0 10px;">
+                                            <div class="progress-track">
+                                                <div class="progress-fill"
+                                                    style="width: 50%; background-color: #6366F1;"></div>
+                                            </div>
+                                        </td>
+                                        <td width="10%"
+                                            style="font-size: 13px; font-weight: 700; color: #0F172A; text-align: right;">
+                                            5</td>
+                                    </tr>
+                                </table>
+
+                                <table width="100%" style="margin-bottom: 10px;">
+                                    <tr>
+                                        <td width="35%" style="font-size: 13px; font-weight: 500; color: #475569;">Tech
+                                            Depth</td>
+                                        <td width="55%" style="padding: 0 10px;">
+                                            <div class="progress-track">
+                                                <div class="progress-fill"
+                                                    style="width: 80%; background-color: #10B981;"></div>
+                                            </div>
+                                        </td>
+                                        <td width="10%"
+                                            style="font-size: 13px; font-weight: 700; color: #0F172A; text-align: right;">
+                                            8</td>
+                                    </tr>
+                                </table>
+
+                                <table width="100%" style="margin-bottom: 10px;">
+                                    <tr>
+                                        <td width="35%" style="font-size: 13px; font-weight: 500; color: #475569;">
+                                            Persuasiveness</td>
+                                        <td width="55%" style="padding: 0 10px;">
+                                            <div class="progress-track">
+                                                <div class="progress-fill"
+                                                    style="width: 60%; background-color: #6366F1;"></div>
+                                            </div>
+                                        </td>
+                                        <td width="10%"
+                                            style="font-size: 13px; font-weight: 700; color: #0F172A; text-align: right;">
+                                            6</td>
+                                    </tr>
+                                </table>
+
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- TAGS -->
+                    <tr>
+                        <td style="padding: 0 24px 24px 24px;">
+                            <div style="border-top: 1px solid #E2E8F0; padding-top: 16px;">
+                                <span
+                                    style="font-size: 11px; font-weight: 700; color: #94A3B8; text-transform: uppercase; margin-right: 8px;">Patterns:</span>
+                                <span class="badge"
+                                    style="background: #F1F5F9; color: #475569; border: 1px solid #E2E8F0;">Fillers:
+                                    High</span>
+                                <span class="badge"
+                                    style="background: #F1F5F9; color: #475569; border: 1px solid #E2E8F0;">Interruptions:
+                                    Low</span>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- MISTAKES -->
+
+                    <tr>
+                        <td style="padding: 0 24px 24px 24px;">
+                            <h3 style="margin-bottom: 12px; color: #B91C1C;">Critical Moments</h3>
+
+                            <div
+                                style="border-left: 3px solid #EF4444; background: #FEF2F2; padding: 12px 16px; border-radius: 0 6px 6px 0; margin-bottom: 8px;">
+                                <div style="font-size: 13px; font-weight: 700; color: #991B1B;">Frequent filler words
+                                </div>
+                                <div style="font-size: 13px; color: #7F1D1D; margin: 4px 0;">Uses fillers such as "so",
+                                    "just", "like" repeatedly within explanations.</div>
+                                <div
+                                    style="font-size: 12px; font-family: monospace; color: #B91C1C; background: rgba(255,255,255,0.5); padding: 4px; border-radius: 4px; display: inline-block; margin-top: 4px;">
+                                    ""So by this way we can implement the. Project based knowledge and we already
+                                    implemented it.""</div>
+                            </div>
+
+                            <div
+                                style="border-left: 3px solid #EF4444; background: #FEF2F2; padding: 12px 16px; border-radius: 0 6px 6px 0; margin-bottom: 8px;">
+                                <div style="font-size: 13px; font-weight: 700; color: #991B1B;">Grammatical awkwardness
+                                </div>
+                                <div style="font-size: 13px; color: #7F1D1D; margin: 4px 0;">Occasionally the sentence
+                                    constructions are awkward or grammatically inconsistent.</div>
+                                <div
+                                    style="font-size: 12px; font-family: monospace; color: #B91C1C; background: rgba(255,255,255,0.5); padding: 4px; border-radius: 4px; display: inline-block; margin-top: 4px;">
+                                    ""So the coaching agent act as a mentor. So what it actually do is it will evaluate
+                                    the speaker...""</div>
+                            </div>
+
+                            <div
+                                style="border-left: 3px solid #EF4444; background: #FEF2F2; padding: 12px 16px; border-radius: 0 6px 6px 0; margin-bottom: 8px;">
+                                <div style="font-size: 13px; font-weight: 700; color: #991B1B;">Excessive detail without
+                                    clear segmentation</div>
+                                <div style="font-size: 13px; color: #7F1D1D; margin: 4px 0;">Delivers dense information
+                                    segments without clear breaks, impacting flow.</div>
+                                <div
+                                    style="font-size: 12px; font-family: monospace; color: #B91C1C; background: rgba(255,255,255,0.5); padding: 4px; border-radius: 4px; display: inline-block; margin-top: 4px;">
+                                    ""This the starting point of visual analysis. We have the beautiful visual analysis
+                                    coming up and we have simple one board view...""</div>
+                            </div>
+
+                        </td>
+                    </tr>
+
+
+                </table>
+
+
+                <!-- FEATURED / PERSONALIZED CARD (SAAS STYLE) -->
+                <table class="main-container card" width="100%" cellpadding="0" cellspacing="0" border="0"
+                    style="background: #FFFFFF; border: 1px solid #CBD5E1; overflow: hidden;">
+                    <tr>
+                        <td style="background: #0F172A; padding: 20px 24px;">
+                            <table width="100%">
+                                <tr>
+                                    <td valign="middle">
+                                        <span
+                                            style="color: #38BDF8; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Focus
+                                            Report</span>
+                                        <h2 style="color: #FFFFFF; margin-top: 4px; font-size: 20px;">Lucas Dubois
+                                        </h2>
+                                    </td>
+                                    <td align="right" valign="middle">
+                                        <span
+                                            style="background: rgba(255,255,255,0.1); color: #FFF; font-size: 12px; padding: 4px 10px; border-radius: 20px;">High
+                                            Priority</span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 24px;">
+                            <p style="font-size: 15px; color: #334155; margin-bottom: 24px; font-weight: 500;">
+                                Lucas demonstrates strong technical knowledge and enthusiasm when explaining
+                                features and demos. However, his communication is hindered by frequent filler words,
+                                grammatical inconsistencies, and overly detailed delivery that can affect listener
+                                comprehension. Enhancing clarity and structure will significantly improve his impact and
+                                persuasiveness.
+                            </p>
+
+                            <!-- 2-Col Grid for Feedback -->
+                            <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 24px;">
+                                <tr>
+                                    <td class="stack-column" width="48%" valign="top" style="padding-right: 2%;">
+                                        <div
+                                            style="background: #F8FAFC; border: 1px solid #E2E8F0; padding: 16px; border-radius: 8px; height: 100%;">
+                                            <div
+                                                style="font-size: 11px; color: #64748B; text-transform: uppercase; font-weight: 700; margin-bottom: 8px;">
+                                                Top Priorities</div>
+                                            <ul style="margin: 0; padding-left: 16px; font-size: 13px; color: #334155;">
+                                                <li style="margin-bottom:4px;">Excessive use of filler words such as
+                                                    "so", "just", and "like".</li>
+                                                <li style="margin-bottom:4px;">Occasional grammatical errors and awkward
+                                                    phrasing during technical explanations.</li>
+                                                <li style="margin-bottom:4px;">Lack of clear segmentation causing
+                                                    overloaded and less structured delivery.</li>
+                                                <li style="margin-bottom:4px;">Frequent minor hesitations that reduce
+                                                    speech fluidity.</li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                    <td class="stack-column" width="48%" valign="top">
+                                        <div
+                                            style="background: #F0FDF4; border: 1px solid #DCFCE7; padding: 16px; border-radius: 8px; height: 100%;">
+                                            <div
+                                                style="font-size: 11px; color: #15803D; text-transform: uppercase; font-weight: 700; margin-bottom: 8px;">
+                                                Wins</div>
+                                            <ul style="margin: 0; padding-left: 16px; font-size: 13px; color: #166534;">
+                                                <li style="margin-bottom:4px;">Provided comprehensive and detailed
+                                                    explanations of technical features.</li>
+                                                <li style="margin-bottom:4px;">Displayed confidence and deep product
+                                                    knowledge.</li>
+                                                <li style="margin-bottom:4px;">Maintained politeness and engagement with
+                                                    listeners.</li>
+                                                <li style="margin-bottom:4px;">Successfully connected technical points
+                                                    with practical demos.</li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <!-- Timeline / Roadmap -->
+                            <h3 style="margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid #E2E8F0;">
+                                Action Roadmap</h3>
+
+                            <table width="100%" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td width="40" valign="top">
+                                        <div
+                                            style="width: 24px; height: 24px; background: #E0F2FE; color: #0284C7; border-radius: 50%; text-align: center; line-height: 24px; font-weight: bold; font-size: 12px;">
+                                            1</div>
+                                    </td>
+                                    <td style="padding-bottom: 20px;">
+                                        <div style="font-size: 14px; font-weight: 700; color: #0F172A;">Immediate Action
+                                        </div>
+                                        <div style="font-size: 14px; color: #475569; margin-top: 2px;">Reduce filler
+                                            words by practicing deliberate pauses., Simplify sentence structures for
+                                            clearer communication., Segment information into manageable, logically
+                                            organized chunks., Slow down speech slightly to enhance clarity.</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="40" valign="top">
+                                        <div
+                                            style="width: 24px; height: 24px; background: #E0F2FE; color: #0284C7; border-radius: 50%; text-align: center; line-height: 24px; font-weight: bold; font-size: 12px;">
+                                            2</div>
+                                    </td>
+                                    <td style="padding-bottom: 20px;">
+                                        <div style="font-size: 14px; font-weight: 700; color: #0F172A;">This Week</div>
+                                        <div style="font-size: 14px; color: #475569; margin-top: 2px;">Record short
+                                            technical presentations, listen for filler words, and deliberately reduce
+                                            them., Practice rewriting key explanations with simpler sentences and
+                                            rehearse aloud., Use tools or apps to get real-time feedback on speech
+                                            fillers and grammatical structure.
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <!-- Final Note -->
+                            <div
+                                style="margin-top: 10px; background: #FFF; border-left: 3px solid #6366F1; padding: 12px 16px;">
+                                <i style="color: #475569; font-size: 14px;">"Your expertise and technical insights form
+                                    a solid foundation for impactful communication. By refining your clarity and
+                                    delivery, you will elevate your influence and inspire greater confidence in your
+                                    audience. Keep honing your skills steadily, and you will deliver compelling messages
+                                    that truly resonate."</i>
+                            </div>
+
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- FOOTER -->
+                <table class="main-container" width="100%" cellpadding="0" cellspacing="0" border="0"
+                    style="margin-top: 32px;">
+                    <tr>
+                        <td align="center">
+                            <a href="#"
+                                style="background: #0F172A; color: #FFFFFF; text-decoration: none; padding: 12px 24px; border-radius: 6px; font-weight: 600; font-size: 14px; display: inline-block;">View
+                                Full Dashboard</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center" style="padding-top: 24px; color: #94A3B8; font-size: 12px;">
+                            <p>&copy; 2026 Coaching Platform Inc.<br>
+                                <a href="#" style="color: #94A3B8; text-decoration: underline;">Unsubscribe</a> | <a
+                                    href="#" style="color: #94A3B8; text-decoration: underline;">Privacy Policy</a>
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+
+            </td>
+        </tr>
+    </table>
+
+</body>
+
+</html>
